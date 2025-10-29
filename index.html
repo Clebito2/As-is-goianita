@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapeamento de Processos AS-IS | Casa Goianita</title>
+    
+    <!-- Importação de Fontes (Poppins e Merriweather) - Conforme Guia de Estilo -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        /* * Guia de Estilo V2 (LiVe) - Tokens CSS
+         * Aplicados rigorosamente conforme o documento fornecido.
+         */
+        :root {
+            /* 1.1. Paleta de Cores */
+            --primary-bg: #06192a;       /* Azul Petróleo - Fundo principal */
+            --card-bg: #0A243D;          /* Azul Escuro - Fundo de cards */
+            --accent-color: #00e800;     /* Verde Vibrante - Destaques */
+            --text-primary: #ffffff;     /* Branco - Textos principais */
+            --text-muted: #cccccc;       /* Cinza Claro */
+            --text-subtle: #a0a0a0;       /* Cinza - Textos secundários */
+            --border-color: rgba(255, 255, 255, 0.1);
+            --accent-glow: 0 0 8px rgba(0, 232, 0, 0.7);
+
+            /* 1.2. Tipografia */
+            --font-primary: 'Poppins', sans-serif;
+            --font-secondary: 'Merriweather', serif;
+
+            /* 1.3. Espaçamento */
+            --space-sm: 1rem;
+            --space-md: 2rem;
+            --space-lg: 4rem;
+        }
+
+        /* * Estilos Base
+         */
+        body {
+            font-family: var(--font-primary);
+            background-color: var(--primary-bg);
+            color: var(--text-primary);
+            
+            /* 2.2. Textura de Fundo (Obrigatória) */
+            background-image: url('https://www.transparenttextures.com/patterns/cubes.png');
+            background-attachment: fixed; /* Efeito de paralaxe */
+        }
+
+        /* * Componentes (Conforme Guia de Estilo)
+         */
+
+        /* 4.1. Card Padrão */
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: var(--space-md);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        /* 4.2. Variação: Card de Diagnóstico */
+        .card-diagnosis {
+            border-left: 4px solid var(--accent-color);
+            font-family: var(--font-secondary);
+        }
+
+        /* 3. Estrutura: Cabeçalho Fixo */
+        header {
+            background-color: rgba(6, 25, 42, 0.8); /* --primary-bg com alfa */
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        /* 3. Estrutura: Rodapé */
+        footer {
+            background-color: #000;
+        }
+
+        /* * Componentes Customizados (Abas)
+         */
+        .tab-button {
+            padding: 0.75rem 1.5rem;
+            font-weight: 600;
+            color: var(--text-subtle);
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .tab-button:hover {
+            color: var(--text-muted);
+        }
+
+        .tab-button.active {
+            color: var(--accent-color);
+            border-bottom-color: var(--accent-color);
+        }
+
+        .tab-panel {
+            display: none; /* Oculto por padrão */
+        }
+
+        .tab-panel.active {
+            display: block; /* Exibido pelo JS */
+        }
+
+        /* Destaque para GAPs */
+        .gap-list li {
+            position: relative;
+            padding-left: 1.75rem;
+            margin-bottom: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .gap-list li::before {
+            content: '!!';
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: #ef4444; /* red-500 */
+            font-weight: 700;
+            font-size: 1.1rem;
+            line-height: 1.5rem;
+        }
+        
+        /* 5. Animações */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        /* Animação para os painéis das abas */
+        @keyframes tabFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .tab-panel.active {
+            animation: tabFadeIn 0.5s ease;
+        }
+
+        /* 6. Acessibilidade */
+        .card:focus-visible, .tab-button:focus-visible {
+            outline: 3px solid var(--accent-color);
+            outline-offset: 2px;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- 
+      CABEÇALHO (Conforme Guia de Estilo)
+      Logo: ...-36.png (Específico para Propostas)
+    -->
+    <header class="fixed top-0 left-0 right-0 z-50">
+        <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="flex h-20 items-center justify-between">
+                <div class="flex-shrink-0">
+                    <img class="h-10" 
+                         src="https://raw.githubusercontent.com/Clebito2/layout/main/Logo%20live%20oficial-36.png" 
+                         alt="Logo Live Consultoria"
+                         loading="lazy">
+                </div>
+                <div class="hidden md:block">
+                    <p class="text-right font-semibold text-white">Projeto Casa Goianita</p>
+                    <p class="text-right text-sm text-gray-400">Mapeamento de Processos AS-IS</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="pt-20">
+
+        <!-- Seção Hero -->
+        <section class="py-24 text-center fade-in">
+            <div class="container mx-auto max-w-4xl px-4">
+                <h1 class="text-4xl md:text-5xl font-bold tracking-tight">
+                    Mapeamento de Processos <span style="color: var(--accent-color); text-shadow: var(--accent-glow);">AS-IS</span>
+                </h1>
+                <p class="mt-4 text-xl text-gray-300">
+                    Diagnóstico Operacional da Casa Goianita
+                </p>
+            </div>
+        </section>
+
+        <!-- Seção Diagnóstico Estratégico -->
+        <section class="container mx-auto max-w-4xl px-4 mb-16 fade-in" style="animation-delay: 200ms;">
+            <h2 class="text-2xl md:text-3xl font-bold mb-6 text-center">Diagnóstico Estratégico Geral</h2>
+            <div class="card card-diagnosis italic text-gray-300 text-lg leading-relaxed">
+                <p>O diagnóstico geral é que a Casa Goianita opera com processos <strong>altamente fragmentados e dependentes de pessoas</strong>. O sistema PMenu é subutilizado, servindo apenas como PDV e consulta básica de estoque.</p>
+                <p class="mt-4">A gestão real (Financeira, Comercial e Compras) opera em <strong>"sistemas-sombra"</strong> (planilhas Excel, cadernos, WhatsApp), criando alto risco operacional, impossibilitando a auditoria e gerando zero visão gerencial unificada.</p>
+                <p class="mt-4">O <strong>"nó" central</strong> da operação é o fluxo "Procure-to-Pay" (Compras -> Estoque -> Financeiro), que é 100% manual, quebrado e baseado em artefatos físicos, causando GAPs em cascata por toda a empresa.</p>
+            </div>
+        </section>
+
+        <!-- Seção de Abas (Tabs) -->
+        <section class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mb-24">
+            
+            <!-- Navegação das Abas -->
+            <div class="border-b border-gray-700 overflow-x-auto">
+                <nav class="-mb-px flex" aria-label="Abas de Departamento">
+                    <button class="tab-button active" data-tab="fluxo-p2p" role="tab">Fluxo P2P (Crítico)</button>
+                    <button class="tab-button" data-tab="compras" role="tab">Compras (Curuca)</button>
+                    <button class="tab-button" data-tab="estoque" role="tab">Estoque (Lucas)</button>
+                    <button class="tab-button" data-tab="financeiro" role="tab">Financeiro (Érica)</button>
+                    <button class="tab-button" data-tab="caixa" role="tab">Caixa/Cofre (Silvana)</button>
+                    <button class="tab-button" data-tab="comercial" role="tab">Comercial (Cláudia)</button>
+                    <button class="tab-button" data-tab="operacoes" role="tab">Operações Loja (Elber)</button>
+                </nav>
+            </div>
+
+            <!-- Painéis de Conteúdo -->
+            <div class="mt-12">
+
+                <!-- Painel 1: Fluxo P2P (Crítico) -->
+                <section id="fluxo-p2p" class="tab-panel active">
+                    <div class="card">
+                        <h3 class="text-2xl font-bold" style="color: var(--accent-color);">Visão Geral: O Fluxo "Procure-to-Pay" (P2P)</h3>
+                        <p class="mt-2 text-gray-300">Este é o macrofluxo mais crítico da empresa, conectando Compras, Estoque e Financeiro. Ele está 100% quebrado.</p>
+                        
+                        <h4 class="text-xl font-semibold mt-8 mb-4">Passo a Passo (AS-IS)</h4>
+                        <ol class="list-decimal list-inside space-y-3 text-gray-300">
+                            <li><strong>(Compras - Curuca)</strong> "Sente" que falta um produto (baseado em "feeling" ou aviso verbal) e anota em um <strong>CADERNO</strong>.</li>
+                            <li><strong>(Compras - Curuca)</strong> Negocia via WhatsApp e autoriza a compra.</li>
+                            <li><strong>(Estoque - Lucas)</strong> Mercadoria chega. Ele imprime um "Relatório de Entrada" do PMenu.</li>
+                            <li><strong>(Estoque - Lucas)</strong> Confere o físico e anota as quantidades e avarias <strong>À CANETA</strong> no relatório impresso.</li>
+                            <li><strong>(Estoque - Lucas)</strong> Entrega o papel + NFe para o Curuca.</li>
+                            <li><strong>(Compras - Curuca)</strong> Pega o papel, confere e anota <strong>À CANETA</strong> a divisão entre lojas.</li>
+                            <li><strong>(Compras - Curuca)</strong> Devolve o papel para o Lucas e lança a NFe no PMenu (para "fechar" o pedido e avisar o financeiro).</li>
+                            <li><strong>(Financeiro - Érica)</strong> Recebe a NFe (física ou por e-mail) e lança manualmente em sua <strong>PLANILHA EXCEL</strong> de Contas a Pagar.</li>
+                            <li><strong>(Financeiro - Érica)</strong> Imprime a planilha, anexa os boletos e monta um <strong>MALOTE FÍSICO</strong>.</li>
+                            <li><strong>(Comercial - Cláudia)</strong> Recebe o <strong>MALOTE FÍSICO</strong>, confere os papéis e agenda o pagamento no banco.</li>
+                        </ol>
+
+                        <h4 class="text-xl font-semibold mt-8 mb-4">GAPs Identificados</h4>
+                        <ul class="gap-list">
+                            <li><strong>Risco Operacional Máximo:</strong> A gestão é feita por 3 artefatos físicos (Caderno, Relatório à Caneta, Malote) e 1 Planilha Excel. Não há fonte única da verdade.</li>
+                            <li><strong>Aprovação "Cega":</strong> Cláudia aprova pagamentos sem validação sistêmica de que o Pedido, a NFe e o Recebimento Físico conferem.</li>
+                            <li><strong>Delay de Estoque:</strong> O produto chega na loja, mas pode levar horas ou dias para estar disponível para venda, pois depende de 4 etapas manuais de conferência e lançamento.</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- Painel 2: Compras (Curuca) -->
+                <section id="compras" class="tab-panel">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="card">
+                            <h3 class="text-xl font-semibold mb-4">Rotina 1: Decisão de Compra (Requisição)</h3>
+                            <h4 class="text-lg font-semibold mt-4 mb-2 text-gray-400">Passo a Passo (AS-IS)</h4>
+                            <ol class="list-decimal list-inside space-y-2 text-gray-300">
+                                <li>Gatilho para comprar não é sistêmico.</li>
+                                <li>Baseado no "Feeling" do Curuca sobre produtos que "vendem mais".</li>
+                                <li>Baseado em avisos verbais/WhatsApp de Vendedores ("vendi todos").</li>
+                                <li>Consulta manual relatórios de vendas passadas no PMenu.</li>
+                            </ol>
+                            <h4 class="text-lg font-semibold mt-6 mb-2 text-gray-400">GAPs Identificados</h4>
+                            <ul class="gap-list">
+                                <li>Ausência total de gestão de Estoque Mínimo. O PMenu tem a função, mas "não é acompanhada".</li>
+                                <li>Compras 100% reativas, causando rupturas constantes de estoque.</li>
+                            </ul>
+                        </div>
+                        <div class="card">
+                            <h3 class="text-xl font-semibold mb-4">Rotina 2: Cotação e Geração de Pedido</h3>
+                            <h4 class="text-lg font-semibold mt-4 mb-2 text-gray-400">Passo a Passo (AS-IS)</h4>
+                            <ol class="list-decimal list-inside space-y-2 text-gray-300">
+                                <li>Curuca anota os itens necessários em um <strong>CADERNO</strong> físico.</li>
+                                <li>Contata fornecedores (60% WhatsApp) ou acessa portais de atacado/Mercado Livre.</li>
+                                <li>Recebe orçamento, confere (preço/prazo) e autoriza a compra.</li>
+                                <li><strong>Após autorizar</strong>, ele lança o Pedido de Compra no PMenu (para "esperar" a nota).</li>
+                            </ol>
+                            <h4 class="text-lg font-semibold mt-6 mb-2 text-gray-400">GAPs Identificados</h4>
+                            <ul class="gap-list">
+                                <li>Processo de compra arcaico, sem cotação formal registrada e dependente de um caderno.</li>
+                                <li>O Pedido de Compra no PMenu é um *pró-forma* lançado *depois* da compra, não uma ferramenta de controle.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Painel 3: Estoque (Lucas) -->
+                <section id="estoque" class="tab-panel">
+                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="card">
+                            <h3 class="text-xl font-semibold mb-4">Rotina 3: Recebimento e Conferência</h3>
+                            <h4 class="text-lg font-semibold mt-4 mb-2 text-gray-400">Passo a Passo (AS-IS)</h4>
+                            <ol class="list-decimal list-inside space-y-2 text-gray-300">
+                                <li>Fornecedor entrega mercadoria com NFe física.</li>
+                                <li>Lucas pega a NFe, vai ao PMenu, digita Fornecedor e Nº da Nota.</li>
+                                <li>Sistema puxa itens do Pedido de Compra (feito pelo Curuca).</li>
+                                <li>Lucas imprime um "Relatório de Entrada" (espelho da nota).</li>
+                                <li>Realiza conferência física (cega) e anota a quantidade recebida <strong>À CANETA</strong> no relatório impresso.</li>
+                                <li>Anota avarias/faltas <strong>À CANETA</strong> no mesmo relatório.</li>
+                                <li>Entrega o Relatório anotado + NFe física para o Curuca.</li>
+                            </ol>
+                            <h4 class="text-lg font-semibold mt-6 mb-2 text-gray-400">GAPs Identificados</h4>
+                            <ul class="gap-list">
+                                <li>O registro de conferência e avaria é 100% manual e offline.</li>
+                                <li>O sistema é usado apenas para *imprimir* o relatório; a conferência real vive em um papel.</li>
+                            </ul>
+                        </div>
+                        <div class="card">
+                            <h3 class="text-xl font-semibold mb-4">Rotina 4: Lançamento e Divisão</h3>
+                            <h4 class="text-lg font-semibold mt-4 mb-2 text-gray-400">Passo a Passo (AS-IS)</h4>
+                            <ol class="list-decimal list-inside space-y-2 text-gray-300">
+                                <li>Curuca recebe o Relatório anotado do Lucas.</li>
+                                <li>Curuca confere o Relatório (papel) contra a NFe (papel).</li>
+                                <li>Curuca anota <strong>À CANETA</strong> a divisão de lojas no mesmo papel.</li>
+                                <li>Curuca devolve o papel ao Lucas.</li>
+                                <li>Curuca vai ao PMenu e "fecha" o pedido (lança a NFe) para liberar o financeiro.</li>
+                                <li>Lucas (com o papel) vai ao PMenu e executa a "Transferência entre Lojas".</li>
+                                <li>A Entrada oficial no estoque (para venda) só é feita pelo Gerente da loja de destino.</li>
+                            </ol>
+                            <h4 class="text-lg font-semibold mt-6 mb-2 text-gray-400">GAPs Identificados</h4>
+                            <ul class="gap-list">
+                                <li>Processo é um "Nó" de gargalos com 4 etapas manuais pós-recebimento.</li>
+                                <li>Gera delay (dias) entre o produto estar no depósito e estar disponível para venda.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Painel 4: Financeiro (Érica) -->
+                <section id="financeiro" class="tab-panel">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="card">
+                            <h3 class="text-xl font-semibold mb-4">Rotina 1: Lançamento de Contas a Pagar</h3>
+                            <h4 class="text-lg font-semibold mt-4 mb-2 text-gray-400">Passo a Passo (AS-IS)</h4>
+                            <ol class="list-decimal list-inside space-y-2 text-gray-300">
+                                <li>Recebe NFe (física ou e-mail).</li>
+                                <li>Abre a <strong>Planilha Excel "Contas a Pagar"</strong> (a fonte da verdade).</li>
+                                <li>Lança manualmente os dados da NFe/Boleto na planilha.</li>
+                                <li>Imprime a própria planilha.</li>
+                                <li>Agrupa os documentos físicos (NFe, boletos) e anexa a planilha impressa.</li>
+                                <li>Monta o <strong>"Malote"</strong> físico e envia para Cláudia aprovar.</li>
+                            </ol>
+                            <h4 class="text-lg font-semibold mt-6 mb-2 text-gray-400">GAPs Identificados</h4>
+                            <ul class="gap-list">
+                                <li>Risco Operacional Máximo: O controle de *todas* as contas a pagar reside em uma Planilha Excel.</li>
+                                <li>Desconexão Total: Lança a NFe sem validação sistêmica de Pedido de Compra ou Recebimento Físico.</li>
+                                <li>Processo Físico (Malote): Lento, não rastreável, impede gestão remota.</li>
+                            </ul>
+                        </div>
+                        <div class="card">
+                            <h3 class="text-xl font-semibold mb-4">Rotina 2: Administração de Pessoal (Ponto)</h3>
+                            <h4 class="text-lg font-semibold mt-4 mb-2 text-gray-400">Passo a Passo (AS-IS)</h4>
+                            <ol class="list-decimal list-inside space-y-2 text-gray-300">
+                                <li>Funcionários batem ponto em relógio físico.</li>
+                                <li>Érica coleta os dados brutos (exporta/imprime).</li>
+                                <li>Abre *outra* <strong>Planilha Excel</strong> para controle de jornada.</li>
+                                <li>Digita ou "copia/cola" os dados na planilha, tratando manualmente faltas e horas extras.</li>
+                                <li>Envia a planilha para a contabilidade fechar a folha.</li>
+                            </ol>
+                            <h4 class="text-lg font-semibold mt-6 mb-2 text-gray-400">GAPs Identificados</h4>
+                            <ul class="gap-list">
+                                <li>Dupla Digitação: Processo 100% manual e suscetível a erros.</li>
+                                <li>Gestão Reativa: Controle de jornada só é apurado no final do período.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Painel 5: Caixa/Cofre (Silvana) -->
+                <section id="caixa" class="tab-panel">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="card">
+                            <h3 class="text-xl font-semibold mb-4">Rotina 1: Fechamento de Caixa (Operador)</h3>
+                            <h4 class="text-lg font-semibold mt-4 mb-2 text-gray-400">Passo a Passo (AS-IS)</h4>
+                            <ol class="list-decimal list-inside space-y-2 text-gray-300">
+                                <li>Operador emite o relatório "Fechamento de Caixa" do PMenu.</li>
+                                <li>Relatório mostra o valor *esperado* (Dinheiro, PIX, Cartão).</li>
+                                <li>Operador conta o físico (dinheiro) e agrupa "tiquetes" de cartão.</li>
+                                <li>Entrega malote (dinheiro + tiquetes + Relatório PMenu) para Silvana.</li>
+                            </ol>
+                            <h4 class="text-lg font-semibold mt-6 mb-2 text-gray-400">GAPs Identificados</h4>
+                            <ul class="gap-list">
+                                <li>Conferência manual dos "tiquetes" de cartão é um ponto de falha.</li>
+                            </ul>
+                        </div>
+                        <div class="card">
+                            <h3 class="text-xl font-semibold mb-4">Rotina 2: Gestão e Fechamento do Cofre</h3>
+                            <h4 class="text-lg font-semibold mt-4 mb-2 text-gray-400">Passo a Passo (AS-IS)</h4>
+                            <ol class="list-decimal list-inside space-y-2 text-gray-300">
+                                <li>Silvana recebe o malote do caixa.</li>
+                                <li>Realiza a segunda conferência (reconta tudo).</li>
+                                <li>Abre a <strong>Planilha Excel</strong> de controle do Cofre (o "sistema-sombra").</li>
+                                <li>Lança manualmente na planilha os valores *reais* que conferiu.</li>
+                                <li>Confronta sua planilha (Real) com o Relatório PMenu (Esperado).</li>
+                                <li>Guarda o dinheiro físico no cofre.</li>
+                            </ol>
+                            <h4 class="text-lg font-semibold mt-6 mb-2 text-gray-400">GAPs Identificados</h4>
+                            <ul class="gap-list">
+                                <li>Dupla Digitação: O PMenu não gerencia o cofre. O controle real é uma Planilha Excel.</li>
+                                <li>Risco Operacional: Dependência de um arquivo Excel manual para todo o fluxo de caixa físico.</li>
+                                <li>Silo de Informação: A Planilha do Cofre (Silvana) não se conecta com a Planilha de Pagamentos (Érica).</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Painel 6: Comercial (Cláudia) -->
+                <section id="comercial" class="tab-panel">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="card">
+                            <h3 class="text-xl font-semibold mb-4">Rotina 1: Aprovação de Contas a Pagar</h3>
+                            <h4 class="text-lg font-semibold mt-4 mb-2 text-gray-400">Passo a Passo (AS-IS)</h4>
+                            <ol class="list-decimal list-inside space-y-2 text-gray-300">
+                                <li>(Érica) Monta o <strong>"Malote"</strong> físico com planilhas impressas e boletos.</li>
+                                <li>(Cláudia) Recebe o malote físico.</li>
+                                <li>(Cláudia) Confere manualmente os documentos impressos (Planilha vs. Boletos).</li>
+                                <li>(Cláudia) Acessa o sistema do banco e agenda os pagamentos aprovados.</li>
+                            </ol>
+                            <h4 class="text-lg font-semibold mt-6 mb-2 text-gray-400">GAPs Identificados</h4>
+                            <ul class="gap-list">
+                                <li>Processo 100% Físico e Ineficiente: É o gargalo final do fluxo P2P.</li>
+                                <li>Aprovação "Cega": Aprova o pagamento com base em uma planilha digitada, sem validação sistêmica de Recebimento Físico.</li>
+                            </ul>
+                        </div>
+                        <div class="card">
+                            <h3 class="text-xl font-semibold mb-4">Rotina 2: Definição de Metas e Desempenho</h3>
+                            <h4 class="text-lg font-semibold mt-4 mb-2 text-gray-400">Passo a Passo (AS-IS)</h4>
+                            <ol class="list-decimal list-inside space-y-2 text-gray-300">
+                                <li>Usa o PMenu para "tirar relatório de faturamento" (exportar dados brutos).</li>
+                                <li>Joga esses dados em uma <strong>Planilha Excel</strong>.</li>
+                                <li>Nesta planilha, ela define as metas de faturamento mensais.</li>
+                                <li>Distribui esta planilha (via WhatsApp) para os gerentes.</li>
+                            </ol>
+                            <h4 class="text-lg font-semibold mt-6 mb-2 text-gray-400">GAPs Identificados</h4>
+                            <ul class="gap-list">
+                                <li>Gestão Desconectada: As metas (Excel) não estão integradas ao PDV (PMenu).</li>
+                                <li>Análise Reativa: A gestão é feita olhando o "retrovisor" (faturamento passado), e não em tempo real.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Painel 7: Operações Loja (Elber) -->
+                <section id="operacoes" class="tab-panel">
+                    <div class="card">
+                        <h3 class="text-xl font-semibold mb-4">Rotina 1: Venda e Consulta de Estoque</h3>
+                        <h4 class="text-lg font-semibold mt-4 mb-2 text-gray-400">Passo a Passo (AS-IS)</h4>
+                        <ol class="list-decimal list-inside space-y-2 text-gray-300">
+                            <li>Vendedor aborda o cliente e digita o código do produto no PMenu.</li>
+                            <li>Sistema exibe o estoque da loja atual (ex: 24) e de outras lojas (ex: 35).</li>
+                            <li>Cliente quer 36 unidades. O estoque da loja não é suficiente.</li>
+                            <li>Vendedor precisa <strong>LIGAR</strong> para a outra loja para confirmar se o estoque de "35" é real.</li>
+                            <li>Se for real, solicita a transferência (feita manualmente pelo gerente no PMenu) ou envia o cliente para buscar lá.</li>
+                        </ol>
+                        <h4 class="text-lg font-semibold mt-6 mb-2 text-gray-400">GAPs Identificados</h4>
+                        <ul class="gap-list">
+                            <li>O estoque do PMenu não é 100% confiável, gerando "furos" e perda de vendas.</li>
+                            <li>A transferência entre lojas é um processo manual (via telefone) que depende de um gerente.</li>
+                            <li>Falta de WMS (Gestão de Depósito): O estoque existe, mas "não sabe onde está a mercadoria", aumentando o tempo de atendimento.</li>
+                        </ul>
+                    </div>
+                </section>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- 
+      RODAPÉ (Conforme Guia de Estilo)
+      Logo: ...-34.png (Específico para Propostas)
+    -->
+    <footer class="py-16">
+        <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
+            <img class="h-24 mx-auto" 
+                 src="https://raw.githubusercontent.com/Clebito2/layout/main/Logo%20live%20oficial-34.png" 
+                 alt="Logo Live Consultoria"
+                 loading="lazy">
+            <p class="mt-4 text-lg font-semibold text-white">Live Consultoria Empresarial</p>
+            <p class="mt-2 text-sm text-gray-400">luizportal@ecossistemalive.com.br</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // --- Lógica das Abas (Tabs) ---
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const tabPanels = document.querySelectorAll('.tab-panel');
+
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const tabId = button.getAttribute('data-tab');
+
+                    // Desativar todos
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    tabPanels.forEach(panel => panel.classList.remove('active'));
+
+                    // Ativar o clicado
+                    button.classList.add('active');
+                    document.getElementById(tabId).classList.add('active');
+                });
+            });
+
+            // --- Lógica de Animação (Fade-in) ---
+            // O Guia de Estilo pede IntersectionObserver, mas para simplificar 
+            // e garantir funcionamento no iframe, usaremos um fade-in direto.
+            // Para uma versão de produção, o IO seria ideal.
+            // (Os elementos .fade-in já têm a animação aplicada via CSS)
+        });
+    </script>
+
+</body>
+</html>
