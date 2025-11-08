@@ -5,12 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mapeamento de Processos AS-IS | Casa Goianita</title>
     
-    <!-- Importação de Fontes (Poppins e Merriweather) - Conforme Guia de Estilo -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 
     <style>
@@ -161,10 +159,6 @@
 </head>
 <body class="antialiased">
 
-    <!-- 
-      CABEÇALHO (Conforme Guia de Estilo)
-      Logo: ...-36.png (Específico para Propostas)
-    -->
     <header class="fixed top-0 left-0 right-0 z-50">
         <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="flex h-20 items-center justify-between">
@@ -184,7 +178,6 @@
 
     <main class="pt-20">
 
-        <!-- Seção Hero -->
         <section class="py-24 text-center fade-in">
             <div class="container mx-auto max-w-4xl px-4">
                 <h1 class="text-4xl md:text-5xl font-bold tracking-tight">
@@ -196,7 +189,6 @@
             </div>
         </section>
 
-        <!-- Seção Diagnóstico Estratégico -->
         <section class="container mx-auto max-w-4xl px-4 mb-16 fade-in" style="animation-delay: 200ms;">
             <h2 class="text-2xl md:text-3xl font-bold mb-6 text-center">Diagnóstico Estratégico Geral</h2>
             <div class="card card-diagnosis italic text-gray-300 text-lg leading-relaxed">
@@ -206,10 +198,8 @@
             </div>
         </section>
 
-        <!-- Seção de Abas (Tabs) -->
         <section class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mb-24">
             
-            <!-- Navegação das Abas -->
             <div class="border-b border-gray-700 overflow-x-auto">
                 <nav class="-mb-px flex" aria-label="Abas de Departamento">
                     <button class="tab-button active" data-tab="fluxo-p2p" role="tab">Fluxo P2P (Crítico)</button>
@@ -219,13 +209,12 @@
                     <button class="tab-button" data-tab="caixa" role="tab">Caixa/Cofre (Silvana)</button>
                     <button class="tab-button" data-tab="comercial" role="tab">Comercial (Cláudia)</button>
                     <button class="tab-button" data-tab="operacoes" role="tab">Operações Loja (Elber)</button>
+                    <button class="tab-button" data-tab="gerencia-t4" role="tab">Gerência T4 (Fabrício)</button>
                 </nav>
             </div>
 
-            <!-- Painéis de Conteúdo -->
             <div class="mt-12">
 
-                <!-- Painel 1: Fluxo P2P (Crítico) -->
                 <section id="fluxo-p2p" class="tab-panel active">
                     <div class="card">
                         <h3 class="text-2xl font-bold" style="color: var(--accent-color);">Visão Geral: O Fluxo "Procure-to-Pay" (P2P)</h3>
@@ -254,7 +243,6 @@
                     </div>
                 </section>
 
-                <!-- Painel 2: Compras (Curuca) -->
                 <section id="compras" class="tab-panel">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div class="card">
@@ -290,7 +278,6 @@
                     </div>
                 </section>
 
-                <!-- Painel 3: Estoque (Lucas) -->
                 <section id="estoque" class="tab-panel">
                      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div class="card">
@@ -332,7 +319,6 @@
                     </div>
                 </section>
 
-                <!-- Painel 4: Financeiro (Érica) -->
                 <section id="financeiro" class="tab-panel">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div class="card">
@@ -372,7 +358,6 @@
                     </div>
                 </section>
 
-                <!-- Painel 5: Caixa/Cofre (Silvana) -->
                 <section id="caixa" class="tab-panel">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div class="card">
@@ -410,7 +395,6 @@
                     </div>
                 </section>
 
-                <!-- Painel 6: Comercial (Cláudia) -->
                 <section id="comercial" class="tab-panel">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div class="card">
@@ -446,7 +430,6 @@
                     </div>
                 </section>
                 
-                <!-- Painel 7: Operações Loja (Elber) -->
                 <section id="operacoes" class="tab-panel">
                     <div class="card">
                         <h3 class="text-xl font-semibold mb-4">Rotina 1: Venda e Consulta de Estoque</h3>
@@ -467,14 +450,37 @@
                     </div>
                 </section>
 
+                <section id="gerencia-t4" class="tab-panel">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="card">
+                            <h3 class="text-xl font-semibold mb-4">Rotina 1: O Gerente "Faz-Tudo" (Acúmulo de Funções)</h3>
+                            <h4 class="text-lg font-semibold mt-4 mb-2 text-gray-400">Escopo da Função (AS-IS)</h4>
+                            <p class="text-gray-400 mb-4">O cargo de Gerente na T4 é, na prática, o de um "generalista" que cobre lacunas operacionais devido ao quadro reduzido.</p>
+                            <ol class="list-decimal list-inside space-y-2 text-gray-300">
+                                <li><strong>Gestor:</strong> Abre/fecha loja, supervisiona equipe, participa de entrevistas.</li>
+                                <li><strong>Vendedor:</strong> Atende clientes e realiza vendas (assumindo o "faz-tudo" do vendedor).</li>
+                                <li><strong>Caixa:</strong> Cobre o operador de caixa em contingências.</li>
+                                <li><strong>Estoquista (Suporte):</strong> Colabora na abertura de notas fiscais (processo manual).</li>
+                                <li><strong>Manutenção:</strong> Limpa banheiros e vitrines na ausência da profissional dedicada.</li>
+                            </ol>
+                        </div>
+                        <div class="card">
+                            <h3 class="text-xl font-semibold mb-4">Rotina 2: Pontos de Dor e Gargalos Críticos</h3>
+                            <h4 class="text-lg font-semibold mt-6 mb-2 text-gray-400">GAPs Identificados</h4>
+                            <ul class="gap-list">
+                                <li><strong>Transição Abrupta:</strong> Promovido a gerente "muito rápido" e <strong>"sem nenhum treinamento"</strong>, aprendendo na prática.</li>
+                                <li><strong>Carga Psicológica (Equipe):</strong> Causa de maior "trabalho". Ambiente com <strong>"muita disputa, muita coisinha"</strong>, sobrecarregando a gestão.</li>
+                                <li><strong>Delay de Estoque (Recebimento):</strong> O produto chega, é conferido, mas SÓ fica disponível para venda após a "entrada" manual do Gerente no sistema.</li>
+                                <li><strong>Furo de Estoque (Consulta):</strong> O estoque do PMenu não é confiável, forçando o Gerente a <strong>LIGAR</strong> para outras lojas para confirmar a disponibilidade de um produto.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
             </div>
         </section>
     </main>
 
-    <!-- 
-      RODAPÉ (Conforme Guia de Estilo)
-      Logo: ...-34.png (Específico para Propostas)
-    -->
     <footer class="py-16">
         <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
             <img class="h-24 mx-auto" 
