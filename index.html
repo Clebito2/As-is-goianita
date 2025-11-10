@@ -78,7 +78,6 @@
             display: block; /* Exibido pelo JS */
         }
 
-        /* Marcador de GAPs (corrigido na última vez) */
         .gap-list li {
             position: relative;
             padding-left: 1.75rem;
@@ -119,6 +118,9 @@
         .content-table ul {
             padding-left: 1.5rem;
             margin: 0;
+        }
+        .content-table li {
+            margin-bottom: 0.5rem;
         }
 
         @keyframes fadeIn {
@@ -203,23 +205,9 @@
                 <section id="fluxo-p2p" class="tab-panel active">
                     <div class="card">
                         <h3 class="text-2xl font-bold" style="color: var(--accent-color);">Visão Geral: O Fluxo "Procure-to-Pay" (P2P)</h3>
-                        <p class="mt-2 text-gray-300">Este é o macrofluxo mais crítico da empresa, conectando Compras, Estoque e Financeiro. Ele está 100% quebrado.</p>
-                        
-                        <h4 class="text-xl font-semibold mt-8 mb-4">Passo a Passo (AS-IS)</h4>
-                        <ol class="list-decimal list-inside space-y-3 text-gray-300">
-                            <li><strong>(Compras - Curuca)</strong> "Sente" que falta um produto (baseado em "feeling" ou aviso verbal) e anota em um <strong>CADERNO</strong>.</li>
-                            <li><strong>(Compras - Curuca)</strong> Negocia via WhatsApp e autoriza a compra.</li>
-                            <li><strong>(Estoque - Lucas)</strong> Mercadoria chega. Ele imprime um "Relatório de Entrada" do PMenu.</li>
-                            <li><strong>(Estoque - Lucas)</strong> Confere o físico e anota as quantidades e avarias <strong>À CANETA</strong> no relatório impresso.</li>
-                            <li><strong>(Estoque - Lucas)</strong> Entrega o papel + NFe para o Curuca.</li>
-                            <li><strong>(Compras - Curuca)</strong> Pega o papel, confere e anota <strong>À CANETA</strong> a divisão entre lojas.</li>
-                            <li><strong>(Compras - Curuca)</strong> Devolve o papel para o Lucas e lança a NFe no PMenu (para "fechar" o pedido e avisar o financeiro).</li>
-                            <li><strong>(Financeiro - Érica)</strong> Recebe a NFe (física ou por e-mail) e lança manualmente em sua <strong>PLANILHA EXCEL</strong> de Contas a Pagar.</li>
-                            <li><strong>(Financeiro - Érica)</strong> Imprime a planilha, anexa os boletos e monta um <strong>MALOTE FÍSICO</strong>.</li>
-                            <li><strong>(Comercial - Cláudia)</strong> Recebe o <strong>MALOTE FÍSICO</strong>, confere os papéis e agenda o pagamento no banco.</li>
-                        </ol>
+                        <p class="mt-2 text-gray-300">Este é o macrofluxo mais crítico da empresa, conectando Compras, Estoque e Financeiro. Ele está 100% quebrado e é detalhado nas abas específicas de cada colaborador.</p>
 
-                        <h4 class="text-xl font-semibold mt-8 mb-4">GAPs Identificados</h4>
+                        <h4 class="text-xl font-semibold mt-8 mb-4">GAPs Identificados no Fluxo</h4>
                         <ul class="gap-list">
                             <li><strong>Risco Operacional Máximo:</strong> A gestão é feita por 3 artefatos físicos (Caderno, Relatório à Caneta, Malote) e 1 Planilha Excel. Não há fonte única da verdade.</li>
                             <li><strong>Aprovação "Cega":</strong> Cláudia aprova pagamentos sem validação sistêmica de que o Pedido, a NFe e o Recebimento Físico conferem.</li>
@@ -233,7 +221,7 @@
                         <h3 class="text-2xl font-bold mb-4" style="color: var(--accent-color);">Comercial (Cláudia)</h3>
                         
                         <h4 class="text-xl font-semibold mt-4 mb-2 text-white">1. Sumário Executivo</h4>
-                        <p class="text-gray-300">Cláudia atua como a Sócia-Diretora central da operação, acumulando os pilares Comercial, Financeiro (Alto Nível) e Operações (Tático/Urgências). Seu trabalho é a definição de estratégia de vendas, mas é executado de forma 100% manual e reativa, dependente de planilhas Excel pessoais que ela mesma alimenta. O sistema PMenu é o gargalo central, não fornecendo os relatórios analíticos que ela precisa (ex: "Top 5" produtos por loja), forçando-a a tratar dados brutos manualmente. O desalinhamento com o Compras (Curuca), que foca em preço e não em feedback de vendas, gera atrito e prejudica a reputação da loja.</p>
+                        <p class="text-gray-300">Cláudia atua como a Sócia-Diretora central da operação, acumulando os pilares Comercial, Financeiro (Alto Nível) e Operações (Tático/Urgências). Seu trabalho é a definição de estratégia de vendas, mas é executado de forma <strong>100% manual e reativa</strong>, dependente de planilhas Excel pessoais que ela mesma alimenta. O sistema PMenu é o gargalo central, não fornecendo os relatórios analíticos que ela precisa (ex: "Top 5" produtos por loja), forçando-a a tratar dados brutos manualmente. O desalinhamento com o Compras (Curuca), que foca em preço e não em feedback de vendas, gera atrito e prejudica a reputação da loja.</p>
 
                         <h4 class="text-xl font-semibold mt-8 mb-4">2. Perfil da Colaboradora</h4>
                         <ul class="list-disc list-inside text-gray-300">
@@ -368,7 +356,7 @@
                         <h3 class="text-2xl font-bold mb-4" style="color: var(--accent-color);">Cofre (Silvana)</h3>
                         
                         <h4 class="text-xl font-semibold mt-4 mb-2 text-white">1. Sumário Executivo</h4>
-                        <p class="text-gray-300">Silvana (Sócia-Proprietária) atua como "generalista" (VM, Marketing, Compras Específicas), mas seu processo central é a **reconciliação financeira do "Cofre"** (dinheiro em espécie) e Pix. Este processo opera de forma **100% manual e paralela ao PMenu**, utilizando três planilhas Excel separadas, alimentadas por relatórios físicos. O controle é complexo e de alto risco: ela não sabe recriar as fórmulas das planilhas, e a auditoria física do cofre não é diária ("às vezes eu não vou todo mês"), o que já resultou em desvios no passado.</p>
+                        <p class="text-gray-300">Silvana (Sócia-Proprietária) atua como "generalista" (VM, Marketing, Compras Específicas), mas seu processo central é a <strong>reconciliação financeira do "Cofre"</strong> (dinheiro em espécie) e Pix. Este processo opera de forma <strong>100% manual e paralela ao PMenu</strong>, utilizando três planilhas Excel separadas, alimentadas por relatórios físicos. O controle é complexo e de alto risco: ela não sabe recriar as fórmulas das planilhas, e a auditoria física do cofre não é diária ("às vezes eu não vou todo mês"), o que já resultou em desvios no passado.</p>
 
                         <h4 class="text-xl font-semibold mt-8 mb-4">2. Perfil da Colaboradora</h4>
                         <ul class="list-disc list-inside text-gray-300">
@@ -398,7 +386,7 @@
                                     </tr>
                                     <tr>
                                         <td><strong>Fase 3: Planilha 2 (Auditoria de Faturamento)</strong></td>
-                                        <td>Abre o Excel "Lançamento de Dinheiro e Pix". <br> 1. Lança totais de Dinheiro/Pix por loja. <br> 2. **[Auditoria]** Usa o Extrato Bancário para conferir se os valores de Pix de fato entraram na conta.</td>
+                                        <td>Abre o Excel "Lançamento de Dinheiro e Pix". <br> 1. Lança totais de Dinheiro/Pix por loja. <br> 2. <strong>[Auditoria]</strong> Usa o Extrato Bancário para conferir se os valores de Pix de fato entraram na conta.</td>
                                     </tr>
                                     <tr>
                                         <td><strong>Fase 4: Planilha 3 (Centro de Custo)</strong></td>
@@ -436,7 +424,7 @@
                         <h3 class="text-2xl font-bold mb-4" style="color: var(--accent-color);">Compras (Curuca)</h3>
                         
                         <h4 class="text-xl font-semibold mt-4 mb-2 text-white">1. Sumário Executivo</h4>
-                        <p class="text-gray-300">Curuca (Carlos) é o único responsável pelo processo de Compras. Sua rotina é **100% manual e reativa**, baseada em seu "feeling" e em avisos verbais. O diagnóstico revela que **não existe um processo sistêmico de gestão de estoque** (a função "Estoque Mínimo" do PMenu "não é acompanhada"). Ele usa um **caderno físico** para anotações de compra e faz cotações manuais em múltiplos canais. Além disso, ele é o **gargalo** do processo, pois só ele "dá entrada" na nota no sistema (baseado em um relatório de papel do estoquista), atrasando a liberação do estoque para venda e o lançamento no Contas a Pagar (o que afeta Érica).</p>
+                        <p class="text-gray-300">Curuca (Carlos) é o único responsável pelo processo de Compras. Sua rotina é <strong>100% manual e reativa</strong>, baseada em seu "feeling" e em avisos verbais. O diagnóstico revela que <strong>não existe um processo sistêmico de gestão de estoque</strong> (a função "Estoque Mínimo" do PMenu "não é acompanhada"). Ele usa um <strong>caderno físico</strong> para anotações de compra e faz cotações manuais em múltiplos canais. Além disso, ele é o <strong>gargalo</strong> do processo, pois só ele "dá entrada" na nota no sistema (baseado em um relatório de papel do estoquista), atrasando a liberação do estoque para venda e o lançamento no Contas a Pagar (o que afeta Érica).</p>
 
                         <h4 class="text-xl font-semibold mt-8 mb-4">2. Perfil do Colaborador</h4>
                         <ul class="list-disc list-inside text-gray-300">
@@ -495,7 +483,7 @@
                         <h3 class="text-2xl font-bold mb-4" style="color: var(--accent-color);">Estoque (Lucas)</h3>
                         
                         <h4 class="text-xl font-semibold mt-4 mb-2 text-white">1. Sumário Executivo</h4>
-                        <p class="text-gray-300">Lucas é o Estoquista principal, focado na operação física (recebimento, conferência, transferência). Seu processo é **100% manual e dependente**. O gargalo central é que todo o seu trabalho de conferência é registrado em um **relatório de papel (rascunho)**, que é entregue ao Curuca (Compras) para a digitação e entrada real no sistema. Lucas não tem autonomia ou ferramentas (como um coletor de dados) para interagir com o sistema na entrada de notas, atuando apenas como um conferente físico cujos registros formais são descartados.</p>
+                        <p class="text-gray-300">Lucas é o Estoquista principal, focado na operação física (recebimento, conferência, transferência). Seu processo é <strong>100% manual e dependente</strong>. O gargalo central é que todo o seu trabalho de conferência é registrado em um <strong>relatório de papel (rascunho)</strong>, que é entregue ao Curuca (Compras) para a digitação e entrada real no sistema. Lucas não tem autonomia ou ferramentas (como um coletor de dados) para interagir com o sistema na entrada de notas, atuando apenas como um conferente físico cujos registros formais são descartados.</p>
 
                         <h4 class="text-xl font-semibold mt-8 mb-4">2. Perfil do Colaborador</h4>
                         <ul class="list-disc list-inside text-gray-300">
@@ -622,7 +610,7 @@
                         <h3 class="text-2xl font-bold mb-4" style="color: var(--accent-color);">Vendedora T4 (Maria)</h3>
                         
                         <h4 class="text-xl font-semibold mt-4 mb-2 text-white">1. Sumário Executivo</h4>
-                        <p class="text-gray-300">Maria é a vendedora mais sênior da T4 (+15 anos), com um perfil **altamente relacional** e uma base de clientes leais. O diagnóstico revela três gargalos: 1) **Operacional (Multitarefa):** Seu ponto de dor mais crítico é a sobrecarga de funções; ela tem que "vender, pegar no depósito, embalar e levar o cliente no carro", o que a faz perder vendas no piso. 2) **Motivação (Cultura):** Ela relata forte percepção de "discriminação" e "falta de harmonia" na distribuição de vendas e ausência de reconhecimento ("a pessoa não reconhece o valor que você tem"). 3) **Qualificação:** Aponta ausência total de treinamento de vendas ou produtos ("faz muito tempo").</p>
+                        <p class="text-gray-300">Maria é a vendedora mais sênior da T4 (+15 anos), com um perfil <strong>altamente relacional</strong> e uma base de clientes leais. O diagnóstico revela três gargalos: 1) <strong>Operacional (Multitarefa):</strong> Seu ponto de dor mais crítico é a sobrecarga de funções; ela tem que "vender, pegar no depósito, embalar e levar o cliente no carro", o que a faz perder vendas no piso. 2) <strong>Motivação (Cultura):</strong> Ela relata forte percepção de "discriminação" e "falta de harmonia" na distribuição de vendas e ausência de reconhecimento ("a pessoa não reconhece o valor que você tem"). 3) <strong>Qualificação:</strong> Aponta ausência total de treinamento de vendas ou produtos ("faz muito tempo").</p>
 
                         <h4 class="text-xl font-semibold mt-8 mb-4">2. Perfil da Colaboradora</h4>
                         <ul class="list-disc list-inside text-gray-300">
@@ -682,7 +670,7 @@
                         <h3 class="text-2xl font-bold mb-4" style="color: var(--accent-color);">Gerência T4 (Fabrício)</h3>
                         
                         <h4 class="text-xl font-semibold mt-4 mb-2 text-white">1. Sumário Executivo</h4>
-                        <p class="text-gray-300">Fabrício (Gerente T4, 11 anos de casa) tem sua função **minada pela ausência de autoridade gerencial**. O principal ponto de dor é que os proprietários ("pai da Silvana") permitem que funcionários sênior (Maria) **ignorem a hierarquia**, buscando aprovações (como férias) diretamente com eles, que revertem as decisões do gerente. Isso destrói a moral da equipe ("Por que que eu não posso... e ela pode?") e deixa Fabrício sem autonomia. Ele identifica corretamente os gargalos estratégicos (preços, marketing, queda de faturamento de 400k para 200k), mas relata que a diretoria não dá "nem um retorno" às suas sugestões, levando-o a desistir de "bater de frente" devido à "postura... fraca" dos donos.</p>
+                        <p class="text-gray-300">Fabrício (Gerente T4, 11 anos de casa) tem sua função <strong>minada pela ausência de autoridade gerencial</strong>. O principal ponto de dor é que os proprietários ("pai da Silvana") permitem que funcionários sênior (Maria) <strong>ignorem a hierarquia</strong>, buscando aprovações (como férias) diretamente com eles, que revertem as decisões do gerente. Isso destrói a moral da equipe ("Por que que eu não posso... e ela pode?") e deixa Fabrício sem autonomia. Ele identifica corretamente os gargalos estratégicos (preços, marketing, queda de faturamento de 400k para 200k), mas relata que a diretoria não dá "nem um retorno" às suas sugestões, levando-o a desistir de "bater de frente" devido à "postura... fraca" dos donos.</p>
 
                         <h4 class="text-xl font-semibold mt-8 mb-4">2. Perfil do Colaborador</h4>
                         <ul class="list-disc list-inside text-gray-300">
