@@ -12,46 +12,28 @@
     <script src="https://cdn.tailwindcss.com"></script>
 
     <style>
-        /* * Guia de Estilo V2 (LiVe) - Tokens CSS
-         * Aplicados rigorosamente conforme o documento fornecido.
-         */
         :root {
-            /* 1.1. Paleta de Cores */
-            --primary-bg: #06192a;       /* Azul Petróleo - Fundo principal */
-            --card-bg: #0A243D;          /* Azul Escuro - Fundo de cards */
-            --accent-color: #00e800;     /* Verde Vibrante - Destaques */
-            --text-primary: #ffffff;     /* Branco - Textos principais */
-            --text-muted: #cccccc;       /* Cinza Claro */
-            --text-subtle: #a0a0a0;       /* Cinza - Textos secundários */
+            --primary-bg: #06192a;
+            --card-bg: #0A243D;
+            --accent-color: #00e800;
+            --text-primary: #ffffff;
+            --text-muted: #cccccc;
+            --text-subtle: #a0a0a0;
             --border-color: rgba(255, 255, 255, 0.1);
             --accent-glow: 0 0 8px rgba(0, 232, 0, 0.7);
-
-            /* 1.2. Tipografia */
             --font-primary: 'Poppins', sans-serif;
             --font-secondary: 'Merriweather', serif;
-
-            /* 1.3. Espaçamento */
             --space-sm: 1rem;
             --space-md: 2rem;
             --space-lg: 4rem;
         }
-
-        /* * Estilos Base
-         */
         body {
             font-family: var(--font-primary);
             background-color: var(--primary-bg);
             color: var(--text-primary);
-            
-            /* 2.2. Textura de Fundo (Obrigatória) */
             background-image: url('https://www.transparenttextures.com/patterns/cubes.png');
-            background-attachment: fixed; /* Efeito de paralaxe */
+            background-attachment: fixed;
         }
-
-        /* * Componentes (Conforme Guia de Estilo)
-         */
-
-        /* 4.1. Card Padrão */
         .card {
             background-color: var(--card-bg);
             border: 1px solid var(--border-color);
@@ -59,32 +41,20 @@
             padding: var(--space-md);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-
         .card:hover {
             transform: translateY(-5px);
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
         }
-
-        /* 4.2. Variação: Card de Diagnóstico */
         .card-diagnosis {
             border-left: 4px solid var(--accent-color);
             font-family: var(--font-secondary);
         }
-
-        /* 3. Estrutura: Cabeçalho Fixo */
         header {
-            background-color: rgba(6, 25, 42, 0.8); /* --primary-bg com alfa */
+            background-color: rgba(6, 25, 42, 0.8);
             backdrop-filter: blur(10px);
             border-bottom: 1px solid var(--border-color);
         }
-
-        /* 3. Estrutura: Rodapé */
-        footer {
-            background-color: #000;
-        }
-
-        /* * Componentes Customizados (Abas)
-         */
+        
         .tab-button {
             padding: 0.75rem 1.5rem;
             font-weight: 600;
@@ -92,65 +62,79 @@
             border-bottom: 3px solid transparent;
             transition: all 0.3s ease;
             white-space: nowrap;
+            cursor: pointer;
         }
-
         .tab-button:hover {
             color: var(--text-muted);
         }
-
         .tab-button.active {
             color: var(--accent-color);
             border-bottom-color: var(--accent-color);
         }
-
         .tab-panel {
             display: none; /* Oculto por padrão */
         }
-
         .tab-panel.active {
             display: block; /* Exibido pelo JS */
         }
 
-        /* Destaque para GAPs */
+        /* Marcador de GAPs (corrigido na última vez) */
         .gap-list li {
             position: relative;
             padding-left: 1.75rem;
             margin-bottom: 0.75rem;
             color: var(--text-muted);
         }
-
         .gap-list li::before {
-            content: '!!';
+            content: '•';
             position: absolute;
             left: 0;
             top: 0;
             color: #ef4444; /* red-500 */
-            font-weight: 700;
+            font-weight: 900;
             font-size: 1.1rem;
             line-height: 1.5rem;
         }
         
-        /* 5. Animações */
+        /* Estilos para Tabela */
+        .content-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: var(--space-md) 0;
+            font-size: 0.9rem;
+        }
+        .content-table th, 
+        .content-table td {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            vertical-align: top;
+        }
+        .content-table th {
+            background-color: rgba(0, 232, 0, 0.1);
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+        .content-table ul {
+            padding-left: 1.5rem;
+            margin: 0;
+        }
+
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
-
         .fade-in {
             animation: fadeIn 0.8s ease-out forwards;
         }
-
-        /* Animação para os painéis das abas */
         @keyframes tabFadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
         }
-
         .tab-panel.active {
             animation: tabFadeIn 0.5s ease;
         }
-
-        /* 6. Acessibilidade */
         .card:focus-visible, .tab-button:focus-visible {
             outline: 3px solid var(--accent-color);
             outline-offset: 2px;
@@ -203,12 +187,13 @@
             <div class="border-b border-gray-700 overflow-x-auto">
                 <nav class="-mb-px flex" aria-label="Abas de Departamento">
                     <button class="tab-button active" data-tab="fluxo-p2p" role="tab">Fluxo P2P (Crítico)</button>
+                    <button class="tab-button" data-tab="comercial" role="tab">Comercial (Cláudia)</button>
+                    <button class="tab-button" data-tab="financeiro" role="tab">Financeiro (Érica)</button>
+                    <button class="tab-button" data-tab="caixa" role="tab">Cofre (Silvana)</button>
                     <button class="tab-button" data-tab="compras" role="tab">Compras (Curuca)</button>
                     <button class="tab-button" data-tab="estoque" role="tab">Estoque (Lucas)</button>
-                    <button class="tab-button" data-tab="financeiro" role="tab">Financeiro (Érica)</button>
-                    <button class="tab-button" data-tab="caixa" role="tab">Caixa/Cofre (Silvana)</button>
-                    <button class="tab-button" data-tab="comercial" role="tab">Comercial (Cláudia)</button>
-                    <button class="tab-button" data-tab="operacoes" role="tab">Operações Loja (Elber)</button>
+                    <button class="tab-button" data-tab="operacoes" role="tab">Vendas T4 (Elber)</button>
+                    <button class="tab-button" data-tab="vendedora-t4" role="tab">Vendedora T4 (Maria)</button>
                     <button class="tab-button" data-tab="gerencia-t4" role="tab">Gerência T4 (Fabrício)</button>
                 </nav>
             </div>
@@ -243,254 +228,518 @@
                     </div>
                 </section>
 
-                <section id="compras" class="tab-panel">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div class="card">
-                            <h3 class="text-xl font-semibold mb-4">Rotina 1: Decisão de Compra (Requisição)</h3>
-                            <h4 class="text-lg font-semibold mt-4 mb-2 text-gray-400">Passo a Passo (AS-IS)</h4>
-                            <ol class="list-decimal list-inside space-y-2 text-gray-300">
-                                <li>Gatilho para comprar não é sistêmico.</li>
-                                <li>Baseado no "Feeling" do Curuca sobre produtos que "vendem mais".</li>
-                                <li>Baseado em avisos verbais/WhatsApp de Vendedores ("vendi todos").</li>
-                                <li>Consulta manual relatórios de vendas passadas no PMenu.</li>
-                            </ol>
-                            <h4 class="text-lg font-semibold mt-6 mb-2 text-gray-400">GAPs Identificados</h4>
-                            <ul class="gap-list">
-                                <li>Ausência total de gestão de Estoque Mínimo. O PMenu tem a função, mas "não é acompanhada".</li>
-                                <li>Compras 100% reativas, causando rupturas constantes de estoque.</li>
-                            </ul>
-                        </div>
-                        <div class="card">
-                            <h3 class="text-xl font-semibold mb-4">Rotina 2: Cotação e Geração de Pedido</h3>
-                            <h4 class="text-lg font-semibold mt-4 mb-2 text-gray-400">Passo a Passo (AS-IS)</h4>
-                            <ol class="list-decimal list-inside space-y-2 text-gray-300">
-                                <li>Curuca anota os itens necessários em um <strong>CADERNO</strong> físico.</li>
-                                <li>Contata fornecedores (60% WhatsApp) ou acessa portais de atacado/Mercado Livre.</li>
-                                <li>Recebe orçamento, confere (preço/prazo) e autoriza a compra.</li>
-                                <li><strong>Após autorizar</strong>, ele lança o Pedido de Compra no PMenu (para "esperar" a nota).</li>
-                            </ol>
-                            <h4 class="text-lg font-semibold mt-6 mb-2 text-gray-400">GAPs Identificados</h4>
-                            <ul class="gap-list">
-                                <li>Processo de compra arcaico, sem cotação formal registrada e dependente de um caderno.</li>
-                                <li>O Pedido de Compra no PMenu é um *pró-forma* lançado *depois* da compra, não uma ferramenta de controle.</li>
-                            </ul>
-                        </div>
-                    </div>
-                </section>
+                <section id="comercial" class="tab-panel">
+                    <div class="card">
+                        <h3 class="text-2xl font-bold mb-4" style="color: var(--accent-color);">Comercial (Cláudia)</h3>
+                        
+                        <h4 class="text-xl font-semibold mt-4 mb-2 text-white">1. Sumário Executivo</h4>
+                        <p class="text-gray-300">Cláudia atua como a Sócia-Diretora central da operação, acumulando os pilares Comercial, Financeiro (Alto Nível) e Operações (Tático/Urgências). Seu trabalho é a definição de estratégia de vendas, mas é executado de forma 100% manual e reativa, dependente de planilhas Excel pessoais que ela mesma alimenta. O sistema PMenu é o gargalo central, não fornecendo os relatórios analíticos que ela precisa (ex: "Top 5" produtos por loja), forçando-a a tratar dados brutos manualmente. O desalinhamento com o Compras (Curuca), que foca em preço e não em feedback de vendas, gera atrito e prejudica a reputação da loja.</p>
 
-                <section id="estoque" class="tab-panel">
-                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div class="card">
-                            <h3 class="text-xl font-semibold mb-4">Rotina 3: Recebimento e Conferência</h3>
-                            <h4 class="text-lg font-semibold mt-4 mb-2 text-gray-400">Passo a Passo (AS-IS)</h4>
-                            <ol class="list-decimal list-inside space-y-2 text-gray-300">
-                                <li>Fornecedor entrega mercadoria com NFe física.</li>
-                                <li>Lucas pega a NFe, vai ao PMenu, digita Fornecedor e Nº da Nota.</li>
-                                <li>Sistema puxa itens do Pedido de Compra (feito pelo Curuca).</li>
-                                <li>Lucas imprime um "Relatório de Entrada" (espelho da nota).</li>
-                                <li>Realiza conferência física (cega) e anota a quantidade recebida <strong>À CANETA</strong> no relatório impresso.</li>
-                                <li>Anota avarias/faltas <strong>À CANETA</strong> no mesmo relatório.</li>
-                                <li>Entrega o Relatório anotado + NFe física para o Curuca.</li>
-                            </ol>
-                            <h4 class="text-lg font-semibold mt-6 mb-2 text-gray-400">GAPs Identificados</h4>
-                            <ul class="gap-list">
-                                <li>O registro de conferência e avaria é 100% manual e offline.</li>
-                                <li>O sistema é usado apenas para *imprimir* o relatório; a conferência real vive em um papel.</li>
-                            </ul>
+                        <h4 class="text-xl font-semibold mt-8 mb-4">2. Perfil da Colaboradora</h4>
+                        <ul class="list-disc list-inside text-gray-300">
+                            <li><strong>Função:</strong> Sócia / Diretora Comercial e Financeira.</li>
+                            <li><strong>Perfil:</strong> Generalista de alto nível, "apaga fogo" operacional e define a estratégia de vendas.</li>
+                            <li><strong>Função Core:</strong> Análise Comercial (em Excel), Definição de Metas/Premiações, Gestão Financeira (Alto Nível - libera verba/antecipações).</li>
+                            <li><strong>Funções Secundárias:</strong> Gestão de Pessoal (férias), Curadoria Loja 135 (compra 50% do mix), Gestão de Consignados, Estoque Reativo (monitora "Top 5" e cria "Kits"), Cobertura de "buracos" operacionais (ex: entregas).</li>
+                        </ul>
+
+                        <h4 class="text-xl font-semibold mt-8 mb-4">3. Mapeamento de Rotinas (AS-IS)</h4>
+                        <div class="overflow-x-auto">
+                            <table class="content-table">
+                                <thead>
+                                    <tr>
+                                        <th>Processo-Chave</th>
+                                        <th>Mapeamento da Rotina e Processo (AS-IS)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Análise Comercial e Metas (100% Manual)</strong></td>
+                                        <td>1. Extrai dados brutos de vendas do PMenu. <br> 2. Insere os dados em sua planilha Excel pessoal. <br> 3. Cruza dados manualmente (Produto, Ano vs. Ano, % Loja). <br> 4. Diagnostica quedas (ex: "Copo" caiu de 95k para 65k) e a causa (ex: queda na "Linha Hotel" da Loja 85). <br> 5. Define a Ação Corretiva (ex: "Copo" vira promoção do dia, muda fisicamente o layout da banca).</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Gestão de Promoções (WhatsApp)</strong></td>
+                                        <td>1. A planilha de análise define o que promover. <br> 2. Define 3-5 produtos/dia. <br> 3. Dispara a promoção em grupos de WhatsApp ("Guianita" - Vendedores; "T4" - Clientes). <br> 4. Vendedores (ex: Maria) copiam e disparam para seus grupos VIP.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Gestão de Estoque (Reativo)</strong></td>
+                                        <td>1. Verifica o estoque físico (ou PMenu) dos "Top 5". <br> 2. Calcula mentalmente o estoque mínimo (ex: (Venda Anual / 12) * 2 meses). <br> 3. Envia uma mensagem para o Curuca (Compras) solicitando a reposição.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Criação de Kits</strong></td>
+                                        <td>1. Identifica necessidade (ex: "Cristaleiras" para presente). <br> 2. Cria um novo produto (Kit) no PMenu, selecionando itens avulsos (ex: 3 caixas de 6 taças). <br> 3. Precifica o Kit ligeiramente abaixo da soma das partes.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
-                        <div class="card">
-                            <h3 class="text-xl font-semibold mb-4">Rotina 4: Lançamento e Divisão</h3>
-                            <h4 class="text-lg font-semibold mt-4 mb-2 text-gray-400">Passo a Passo (AS-IS)</h4>
-                            <ol class="list-decimal list-inside space-y-2 text-gray-300">
-                                <li>Curuca recebe o Relatório anotado do Lucas.</li>
-                                <li>Curuca confere o Relatório (papel) contra a NFe (papel).</li>
-                                <li>Curuca anota <strong>À CANETA</strong> a divisão de lojas no mesmo papel.</li>
-                                <li>Curuca devolve o papel ao Lucas.</li>
-                                <li>Curuca vai ao PMenu e "fecha" o pedido (lança a NFe) para liberar o financeiro.</li>
-                                <li>Lucas (com o papel) vai ao PMenu e executa a "Transferência entre Lojas".</li>
-                                <li>A Entrada oficial no estoque (para venda) só é feita pelo Gerente da loja de destino.</li>
-                            </ol>
-                            <h4 class="text-lg font-semibold mt-6 mb-2 text-gray-400">GAPs Identificados</h4>
-                            <ul class="gap-list">
-                                <li>Processo é um "Nó" de gargalos com 4 etapas manuais pós-recebimento.</li>
-                                <li>Gera delay (dias) entre o produto estar no depósito e estar disponível para venda.</li>
-                            </ul>
-                        </div>
+
+                        <h4 class="text-xl font-semibold mt-8 mb-4">4. Diagnóstico (GAPs)</h4>
+                        <ul class="gap-list">
+                            <li><strong>Dependência 100% Manual:</strong> Toda a inteligência comercial (Curva ABC, metas) reside em planilhas Excel manuais alimentadas por Cláudia.</li>
+                            <li><strong>Sistema (PMenu) Ineficiente:</strong> O PMenu é o maior ponto de dor. Não entrega os relatórios analíticos que ela precisa, forçando-a a tratar dados brutos no Excel.</li>
+                            <li><strong>Falta de Gestão de Estoque Sistêmica:</strong> O PMenu não tem indicadores de "Estoque Mínimo". A reposição depende da análise manual de Cláudia e de um aviso reativo ao Curuca.</li>
+                            <li><strong>Desalinhamento Compras vs. Vendas:</strong> O Compras (Curuca) foca em preço ("comprar mais barato") e ignora o feedback de vendas (ex: "não comprar o porta-tempero preto"), gerando devoluções.</li>
+                            <li><strong>Falta de Infraestrutura Pessoal:</strong> Cláudia não tem local de trabalho físico ("minha mesa não tem nada"), precisando trabalhar de casa para se concentrar.</li>
+                        </ul>
+
+                        <h4 class="text-xl font-semibold mt-8 mb-4">5. Recomendações (Requisitos para Novo Sistema ERP)</h4>
+                        <ul class="list-disc list-inside text-gray-300">
+                            <li><strong>Módulo Comercial e BI (Máxima Prioridade):</strong> Um Dashboard de BI visual com Vendas (Dia/Mês/Ano), Comparativo Ano a Ano, e gráfico de % de Vendas por Loja.</li>
+                            <li><strong>Curva ABC (Automatizado):</strong> Relatório de "Top X" por categoria (ex: "Top 5 Copos"), não apenas geral.</li>
+                            <li><strong>Gestão de Metas:</strong> Módulo para criar cotas e rankings de vendedores.</li>
+                            <li><strong>Criação de Kits (Produtos Compostos):</strong> Função para criar um SKU (ex: "Kit Cristaleira") que, ao ser vendido, dê baixa automaticamente nos SKUs dos itens avulsos.</li>
+                            <li><strong>Estoque Mínimo (Alerta):</strong> O sistema DEVE ter Estoque Mínimo e gerar <strong>alertas automáticos</strong> para o Comprador e Gerência.</li>
+                            <li><strong>Gestão de Consignados:</strong> Permitir entrada em consignação (sem gerar financeiro) e gerar relatório de vendas consignadas para acerto.</li>
+                            <li><strong>Dashboard Financeiro (Alto Nível):</strong> Visão "geralzão" (Saldo Bancos, Cofre, Contas a Receber/Pagar).</li>
+                            <li><strong>Controle de Verba (Compras):</strong> Permitir alocar "Budget" para Compras.</li>
+                            <li><strong>Centro de Custo (PF/PJ):</strong> Separação clara de despesas "Pessoais (Sócios)" e "Operacionais".</li>
+                        </ul>
                     </div>
                 </section>
 
                 <section id="financeiro" class="tab-panel">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div class="card">
-                            <h3 class="text-xl font-semibold mb-4">Rotina 1: Lançamento de Contas a Pagar</h3>
-                            <h4 class="text-lg font-semibold mt-4 mb-2 text-gray-400">Passo a Passo (AS-IS)</h4>
-                            <ol class="list-decimal list-inside space-y-2 text-gray-300">
-                                <li>Recebe NFe (física ou e-mail).</li>
-                                <li>Abre a <strong>Planilha Excel "Contas a Pagar"</strong> (a fonte da verdade).</li>
-                                <li>Lança manualmente os dados da NFe/Boleto na planilha.</li>
-                                <li>Imprime a própria planilha.</li>
-                                <li>Agrupa os documentos físicos (NFe, boletos) e anexa a planilha impressa.</li>
-                                <li>Monta o <strong>"Malote"</strong> físico e envia para Cláudia aprovar.</li>
-                            </ol>
-                            <h4 class="text-lg font-semibold mt-6 mb-2 text-gray-400">GAPs Identificados</h4>
-                            <ul class="gap-list">
-                                <li>Risco Operacional Máximo: O controle de *todas* as contas a pagar reside em uma Planilha Excel.</li>
-                                <li>Desconexão Total: Lança a NFe sem validação sistêmica de Pedido de Compra ou Recebimento Físico.</li>
-                                <li>Processo Físico (Malote): Lento, não rastreável, impede gestão remota.</li>
-                            </ul>
+                    <div class="card">
+                        <h3 class="text-2xl font-bold mb-4" style="color: var(--accent-color);">Financeiro (Érica)</h3>
+                        
+                        <h4 class="text-xl font-semibold mt-4 mb-2 text-white">1. Sumário Executivo</h4>
+                        <p class="text-gray-300">Érica é o pilar do Contas a Pagar e Gestão de Ponto. Sua função é severamente impactada pelo acúmulo de responsabilidades (despesas pessoais dos sócios, suporte de TI) e por gargalos tecnológicos ("PMenu não é confiável", computadores "defasados"). Seus processos centrais, como a conciliação de cartões ("bandeira por bandeira") e o pagamento da folha ("Pix por Pix"), são 100% manuais, arcaicos e ineficientes, gerando retrabalho (tarefas de 20 minutos levam uma semana) e dependência de outros setores (esperar o Curuca lançar notas).</p>
+
+                        <h4 class="text-xl font-semibold mt-8 mb-4">2. Perfil da Colaboradora</h4>
+                        <ul class="list-disc list-inside text-gray-300">
+                            <li><strong>Função:</strong> Auxiliar Financeiro (Core: Contas a Pagar e Gestão de Ponto).</li>
+                            <li><strong>Localização:</strong> Escritório (Loja 85).</li>
+                            <li><strong>Função Core:</strong> Execução de pagamentos (banco), reconciliação de extratos, conciliação manual de cartões (com Leila), controle de ponto, execução manual de folha de pagamento ("Pix a Pix").</li>
+                            <li><strong>Funções Críticas (Ad-hoc):</strong> Gestão de despesas pessoais dos sócios, Suporte de TI (falhas de sistema), Interface de Auditoria (fornece "Vales" para Silvana).</li>
+                            <li><strong>Autoridade:</strong> Pagamentos variáveis exigem autorização de "Seu Carlos" ou "Curuca".</li>
+                        </ul>
+
+                        <h4 class="text-xl font-semibold mt-8 mb-4">3. Mapeamento de Rotinas (AS-IS)</h4>
+                        <div class="overflow-x-auto">
+                            <table class="content-table">
+                                <thead>
+                                    <tr>
+                                        <th>Processo-Chave</th>
+                                        <th>Mapeamento da Rotina e Processo (AS-IS)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Contas a Pagar (Diário)</strong></td>
+                                        <td>1. Tira extratos bancários e envia para "Seu Carlos" auditar manualmente. <br> 2. Verifica os lançamentos do dia no PMenu. <br> 3. Cruza lançamentos do sistema com boletos físicos (em gaveta). <br> 4. <strong>[Gargalo]</strong> Se um boleto não está no sistema, ela precisa cobrar o Curuca para que ele lance. <br> 5. Executa pagamentos (fixos, variáveis autorizados, e pessoais dos sócios).</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Conciliação de Cartões (Arcaico)</strong></td>
+                                        <td>1. Érica extrai o relatório da Cielo. <br> 2. Em Excel, separa manualmente as vendas por "Bandeira" e "Modalidade". <br> 3. Leila assume a planilha e calcula manualmente as tarifas/antecipações. <br> 4. "Seu Carlos" audita a planilha final.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Folha de Pagamento (Mensal)</strong></td>
+                                        <td>1. Leila calcula comissões e confere holerites da contabilidade. <br> 2. Érica recebe a folha e realiza os pagamentos manualmente, "Pix por Pix, funcionário por funcionário".</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Gestão de Ponto (Contínuo)</strong></td>
+                                        <td>1. Gerencia o sistema de ponto eletrônico. <br> 2. <strong>[Processo Paralelo]</strong> Alimenta uma planilha Excel separada para controle de Banco de Horas.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
-                        <div class="card">
-                            <h3 class="text-xl font-semibold mb-4">Rotina 2: Administração de Pessoal (Ponto)</h3>
-                            <h4 class="text-lg font-semibold mt-4 mb-2 text-gray-400">Passo a Passo (AS-IS)</h4>
-                            <ol class="list-decimal list-inside space-y-2 text-gray-300">
-                                <li>Funcionários batem ponto em relógio físico.</li>
-                                <li>Érica coleta os dados brutos (exporta/imprime).</li>
-                                <li>Abre *outra* <strong>Planilha Excel</strong> para controle de jornada.</li>
-                                <li>Digita ou "copia/cola" os dados na planilha, tratando manualmente faltas e horas extras.</li>
-                                <li>Envia a planilha para a contabilidade fechar a folha.</li>
-                            </ol>
-                            <h4 class="text-lg font-semibold mt-6 mb-2 text-gray-400">GAPs Identificados</h4>
-                            <ul class="gap-list">
-                                <li>Dupla Digitação: Processo 100% manual e suscetível a erros.</li>
-                                <li>Gestão Reativa: Controle de jornada só é apurado no final do período.</li>
-                            </ul>
-                        </div>
+
+                        <h4 class="text-xl font-semibold mt-8 mb-4">4. Diagnóstico (GAPs)</h4>
+                        <ul class="gap-list">
+                            <li><strong>Infraestrutura e Sistema (Crítico):</strong> O PMenu "não é confiável em nenhum sentido" e os computadores "defasados" "tira o ânimo da equipe".</li>
+                            <li><strong>Processos 100% Manuais e Arcaicos:</strong> A conciliação de cartões ("bandeira por bandeira") e o pagamento da folha ("Pix por Pix") são "cansativos" e suscetíveis a erros.</li>
+                            <li><strong>Gargalos de Comunicação (Dependência):</strong> O Contas a Pagar depende que o Curuca (Compras) lance as notas; é "muito comum" ele não lançar.</li>
+                            <li><strong>Acúmulo de Funções (Sobrecarga):</strong> A redução da equipe ("éramos em oito") fez com que Érica acumulasse funções de DP, Suporte de TI e gestão de despesas pessoais dos sócios.</li>
+                            <li><strong>Bloqueio de Melhorias (Cultural):</strong> Ideias da contabilidade (Mateus) são "barradas" internamente (pelos sócios).</li>
+                        </ul>
+
+                        <h4 class="text-xl font-semibold mt-8 mb-4">5. Recomendações (Requisitos para Novo Sistema ERP)</h4>
+                        <ul class="list-disc list-inside text-gray-300">
+                            <li><strong>ERP com Conciliação de Cartões (Automática):</strong> Módulo que importe arquivos das operadoras (Cielo) e cruze os dados automaticamente.</li>
+                            <li><strong>ERP com Pagamento em Lote (CNAB):</strong> Função para gerar arquivos de pagamento em lote (CNAB) para a folha, substituindo o "Pix por Pix".</li>
+                            <li><strong>Upgrade Urgente de Infraestrutura:</strong> Troca dos computadores "defasados" e garantia de internet estável.</li>
+                            <li><strong>Definição de SLA para Lançamento de Notas:</strong> Definir prazo obrigatório para Compras (Curuca) lançar as NFe no sistema.</li>
+                            <li><strong>Separação Contábil (Centro de Custo):</strong> Criar Centros de Custo distintos para "Despesas Operacionais" e "Despesas Pessoais (Sócios)".</li>
+                        </ul>
                     </div>
                 </section>
 
                 <section id="caixa" class="tab-panel">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div class="card">
-                            <h3 class="text-xl font-semibold mb-4">Rotina 1: Fechamento de Caixa (Operador)</h3>
-                            <h4 class="text-lg font-semibold mt-4 mb-2 text-gray-400">Passo a Passo (AS-IS)</h4>
-                            <ol class="list-decimal list-inside space-y-2 text-gray-300">
-                                <li>Operador emite o relatório "Fechamento de Caixa" do PMenu.</li>
-                                <li>Relatório mostra o valor *esperado* (Dinheiro, PIX, Cartão).</li>
-                                <li>Operador conta o físico (dinheiro) e agrupa "tiquetes" de cartão.</li>
-                                <li>Entrega malote (dinheiro + tiquetes + Relatório PMenu) para Silvana.</li>
-                            </ol>
-                            <h4 class="text-lg font-semibold mt-6 mb-2 text-gray-400">GAPs Identificados</h4>
-                            <ul class="gap-list">
-                                <li>Conferência manual dos "tiquetes" de cartão é um ponto de falha.</li>
-                            </ul>
+                    <div class="card">
+                        <h3 class="text-2xl font-bold mb-4" style="color: var(--accent-color);">Cofre (Silvana)</h3>
+                        
+                        <h4 class="text-xl font-semibold mt-4 mb-2 text-white">1. Sumário Executivo</h4>
+                        <p class="text-gray-300">Silvana (Sócia-Proprietária) atua como "generalista" (VM, Marketing, Compras Específicas), mas seu processo central é a **reconciliação financeira do "Cofre"** (dinheiro em espécie) e Pix. Este processo opera de forma **100% manual e paralela ao PMenu**, utilizando três planilhas Excel separadas, alimentadas por relatórios físicos. O controle é complexo e de alto risco: ela não sabe recriar as fórmulas das planilhas, e a auditoria física do cofre não é diária ("às vezes eu não vou todo mês"), o que já resultou em desvios no passado.</p>
+
+                        <h4 class="text-xl font-semibold mt-8 mb-4">2. Perfil da Colaboradora</h4>
+                        <ul class="list-disc list-inside text-gray-300">
+                            <li><strong>Função:</strong> Sócia-Proprietária / Gestora do Cofre.</li>
+                            <li><strong>Perfil:</strong> Generalista ("a gente faz um pouco de tudo").</li>
+                            <li><strong>Função Core:</strong> Gestão Financeira (Reconciliação de Dinheiro/Pix, Gestão do Cofre, Categorização de Despesas em espécie).</li>
+                            <li><strong>Funções Secundárias:</strong> Operação de Loja (suporte), Visual Merchandising (VM), Marketing (gravação de vídeos/lives), Compras Específicas (Tapetes/Toalhas).</li>
+                        </ul>
+
+                        <h4 class="text-xl font-semibold mt-8 mb-4">3. Mapeamento de Rotinas (AS-IS)</h4>
+                        <div class="overflow-x-auto">
+                            <table class="content-table">
+                                <thead>
+                                    <tr>
+                                        <th>Fase do Processo</th>
+                                        <th>Mapeamento da Rotina e Processo (AS-IS)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Fase 1: Coleta de Dados</strong></td>
+                                        <td>Recebe os "Fechamentos de Caixa" impressos de todas as lojas e os "Vales" (comprovantes de despesas em espécie) de Leila.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Fase 2: Planilha 1 (Controle do Cofre)</strong></td>
+                                        <td>Abre o Excel "Fechamento de Dinheiro". <br> 1. Preenche "Saldo Inicial" (baseado no dia anterior). <br> 2. Lança Entradas (Dinheiro/Pix) das lojas. <br> 3. <strong>[Contorno]</strong> Lança o valor total do Pix na "Saída" (Justificativa: "o Pix tá no banco, não... no cofre"). <br> 4. Lança Saídas em espécie ("Vales"). <br> 5. Planilha calcula o "Saldo Final" em espécie.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Fase 3: Planilha 2 (Auditoria de Faturamento)</strong></td>
+                                        <td>Abre o Excel "Lançamento de Dinheiro e Pix". <br> 1. Lança totais de Dinheiro/Pix por loja. <br> 2. **[Auditoria]** Usa o Extrato Bancário para conferir se os valores de Pix de fato entraram na conta.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Fase 4: Planilha 3 (Centro de Custo)</strong></td>
+                                        <td>Abre o Excel "Despesas Diversas". <br> 1. Transfere os "Vales" (Saídas) da Planilha 1 para esta, agrupando-os por categorias (ex: Salário, Juros, Sócios).</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Fase 5: Verificação Física (Auditoria)</strong></td>
+                                        <td>1. Periodicamente (<strong>não diariamente</strong>), vai à Loja 85. <br> 2. Confere os "Vales" com Leila. <br> 3. Realiza a contagem física do dinheiro no Cofre e compara com o "Saldo Final" da Planilha 1.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
-                        <div class="card">
-                            <h3 class="text-xl font-semibold mb-4">Rotina 2: Gestão e Fechamento do Cofre</h3>
-                            <h4 class="text-lg font-semibold mt-4 mb-2 text-gray-400">Passo a Passo (AS-IS)</h4>
-                            <ol class="list-decimal list-inside space-y-2 text-gray-300">
-                                <li>Silvana recebe o malote do caixa.</li>
-                                <li>Realiza a segunda conferência (reconta tudo).</li>
-                                <li>Abre a <strong>Planilha Excel</strong> de controle do Cofre (o "sistema-sombra").</li>
-                                <li>Lança manualmente na planilha os valores *reais* que conferiu.</li>
-                                <li>Confronta sua planilha (Real) com o Relatório PMenu (Esperado).</li>
-                                <li>Guarda o dinheiro físico no cofre.</li>
-                            </ol>
-                            <h4 class="text-lg font-semibold mt-6 mb-2 text-gray-400">GAPs Identificados</h4>
-                            <ul class="gap-list">
-                                <li>Dupla Digitação: O PMenu não gerencia o cofre. O controle real é uma Planilha Excel.</li>
-                                <li>Risco Operacional: Dependência de um arquivo Excel manual para todo o fluxo de caixa físico.</li>
-                                <li>Silo de Informação: A Planilha do Cofre (Silvana) não se conecta com a Planilha de Pagamentos (Érica).</li>
-                            </ul>
-                        </div>
+
+                        <h4 class="text-xl font-semibold mt-8 mb-4">4. Diagnóstico (GAPs)</h4>
+                        <ul class="gap-list">
+                            <li><strong>Processo Manual e Paralelo (Risco Alto):</strong> O controle financeiro é 100% manual em Excel, fora do PMenu, exigindo redigitação de dados baseados em relatórios impressos.</li>
+                            <li><strong>Dependência de Conhecimento Tácito (Risco Crítico):</strong> As planilhas foram criadas por um terceiro ("Leonardo") e Silvana <strong>não possui o conhecimento para recriar as fórmulas</strong> se os arquivos forem corrompidos.</li>
+                            <li><strong>Auditoria Infrequente e Baseada em Confiança (Risco Alto):</strong> A verificação física do cofre não é diária, o que historicamente já resultou em desvios ("ela fazia empréstimo para funcionário sem anotar").</li>
+                            <li><strong>Contorno de Processo (Ineficiência):</strong> O método de lançar o Pix como "Entrada" e "Saída" é um contorno manual complexo para fazer o saldo de espécie bater.</li>
+                            <li><strong>Falha Operacional Identificada:</strong> Silvana identificou que vendedores estão recebendo pagamentos "fora do caixa".</li>
+                        </ul>
+
+                        <h4 class="text-xl font-semibold mt-8 mb-4">5. Recomendações (Plano de Ação)</h4>
+                        <ul class="list-disc list-inside text-gray-300">
+                            <li><strong>Integração do Controle de Cofre ao ERP:</strong> Migrar as 3 planilhas de Excel para dentro do novo sistema (ERP), eliminando a redigitação e a dependência de fórmulas externas.</li>
+                            <li><strong>Digitalização do Lançamento de "Vales":</strong> Substituir os comprovantes físicos por um lançamento digital no novo ERP no momento em que a despesa ocorre.</li>
+                            <li><strong>Implementação de Rotina de Fechamento de Caixa Cego (Diário):</strong> Definir um protocolo onde a contagem física do cofre seja feita <strong>diariamente</strong> e comparada com o saldo sistêmico.</li>
+                            <li><strong>Revisão do Processo de Recebimento de Pix:</strong> O novo ERP deve conciliar o Pix do extrato bancário diretamente com as vendas, separando-o do controle do "Cofre" em espécie.</li>
+                        </ul>
                     </div>
                 </section>
 
-                <section id="comercial" class="tab-panel">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div class="card">
-                            <h3 class="text-xl font-semibold mb-4">Rotina 1: Aprovação de Contas a Pagar</h3>
-                            <h4 class="text-lg font-semibold mt-4 mb-2 text-gray-400">Passo a Passo (AS-IS)</h4>
-                            <ol class="list-decimal list-inside space-y-2 text-gray-300">
-                                <li>(Érica) Monta o <strong>"Malote"</strong> físico com planilhas impressas e boletos.</li>
-                                <li>(Cláudia) Recebe o malote físico.</li>
-                                <li>(Cláudia) Confere manualmente os documentos impressos (Planilha vs. Boletos).</li>
-                                <li>(Cláudia) Acessa o sistema do banco e agenda os pagamentos aprovados.</li>
-                            </ol>
-                            <h4 class="text-lg font-semibold mt-6 mb-2 text-gray-400">GAPs Identificados</h4>
-                            <ul class="gap-list">
-                                <li>Processo 100% Físico e Ineficiente: É o gargalo final do fluxo P2P.</li>
-                                <li>Aprovação "Cega": Aprova o pagamento com base em uma planilha digitada, sem validação sistêmica de Recebimento Físico.</li>
-                            </ul>
+                <section id="compras" class="tab-panel">
+                     <div class="card">
+                        <h3 class="text-2xl font-bold mb-4" style="color: var(--accent-color);">Compras (Curuca)</h3>
+                        
+                        <h4 class="text-xl font-semibold mt-4 mb-2 text-white">1. Sumário Executivo</h4>
+                        <p class="text-gray-300">Curuca (Carlos) é o único responsável pelo processo de Compras. Sua rotina é **100% manual e reativa**, baseada em seu "feeling" e em avisos verbais. O diagnóstico revela que **não existe um processo sistêmico de gestão de estoque** (a função "Estoque Mínimo" do PMenu "não é acompanhada"). Ele usa um **caderno físico** para anotações de compra e faz cotações manuais em múltiplos canais. Além disso, ele é o **gargalo** do processo, pois só ele "dá entrada" na nota no sistema (baseado em um relatório de papel do estoquista), atrasando a liberação do estoque para venda e o lançamento no Contas a Pagar (o que afeta Érica).</p>
+
+                        <h4 class="text-xl font-semibold mt-8 mb-4">2. Perfil do Colaborador</h4>
+                        <ul class="list-disc list-inside text-gray-300">
+                            <li><strong>Função:</strong> Comprador.</li>
+                            <li><strong>Perfil:</strong> Tomador de decisão centralizado para aquisição.</li>
+                            <li><strong>Função Core:</strong> Identificar necessidade (via "feeling"/avisos), realizar cotações manuais (WhatsApp, E-mail, Sites), autorizar compras, "dar entrada" da NFe no PMenu (após conferência manual).</li>
+                            <li><strong>Ferramentas:</strong> Caderno físico, WhatsApp (60%), E-mail (30%), Sites de Atacado (10%), PMenu (para relatórios brutos e lançamento de nota).</li>
+                        </ul>
+
+                        <h4 class="text-xl font-semibold mt-8 mb-4">3. Mapeamento de Rotinas (AS-IS)</h4>
+                        <div class="overflow-x-auto">
+                            <table class="content-table">
+                                <thead>
+                                    <tr>
+                                        <th>Processo-Chave</th>
+                                        <th>Mapeamento da Rotina e Processo (AS-IS)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Requisição de Compra (Reativo)</strong></td>
+                                        <td>1. Gatilho é o "feeling" de Curuca ou avisos verbais de vendedores. <br> 2. <strong>[Ponto de Falha]</strong> O PMenu possui a função de "Estoque Mínimo", mas Curuca afirma que <strong>"não é acompanhado"</strong>.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Cotação e Pedido (Manual)</strong></td>
+                                        <td>1. Anota os itens necessários em um <strong>CADERNO</strong> físico. <br> 2. Contata fornecedores (WhatsApp/E-mail). <br> 3. Faz cotação manual "em cinco, seis lugares" (ex: Martins, Mercado Livre). <br> 4. Após autorizar, lança o Pedido de Compra no PMenu.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Conferência e Lançamento (Gargalo)</strong></td>
+                                        <td>1. Lucas (Estoquista) confere o físico e anota em um relatório de papel. <br> 2. Curuca recebe o relatório de papel. <br> 3. Curuca confere "um por um" o relatório de Lucas (papel) contra a NFe (papel). <br> 4. Apenas após essa re-conferência, Curuca "dá a entrada" no sistema.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
-                        <div class="card">
-                            <h3 class="text-xl font-semibold mb-4">Rotina 2: Definição de Metas e Desempenho</h3>
-                            <h4 class="text-lg font-semibold mt-4 mb-2 text-gray-400">Passo a Passo (AS-IS)</h4>
-                            <ol class="list-decimal list-inside space-y-2 text-gray-300">
-                                <li>Usa o PMenu para "tirar relatório de faturamento" (exportar dados brutos).</li>
-                                <li>Joga esses dados em uma <strong>Planilha Excel</strong>.</li>
-                                <li>Nesta planilha, ela define as metas de faturamento mensais.</li>
-                                <li>Distribui esta planilha (via WhatsApp) para os gerentes.</li>
-                            </ol>
-                            <h4 class="text-lg font-semibold mt-6 mb-2 text-gray-400">GAPs Identificados</h4>
-                            <ul class="gap-list">
-                                <li>Gestão Desconectada: As metas (Excel) não estão integradas ao PDV (PMenu).</li>
-                                <li>Análise Reativa: A gestão é feita olhando o "retrovisor" (faturamento passado), e não em tempo real.</li>
-                            </ul>
-                        </div>
+
+                        <h4 class="text-xl font-semibold mt-8 mb-4">4. Diagnóstico (GAPs)</h4>
+                        <ul class="gap-list">
+                            <li><strong>Gestão de Estoque Inexistente (Causa-Raiz):</strong> A compra é 100% baseada no "feeling". O PMenu tem a função de Estoque Mínimo, mas "não é acompanhada", causando rupturas de estoque (estimadas em 25%).</li>
+                            <li><strong>Processo de Compra Arcaico e de Risco:</strong> O uso de um <strong>caderno físico</strong> para requisições é um ponto de falha extremo, sem rastreabilidade.</li>
+                            <li><strong>Cotação Manual e Ineficiente:</strong> Gasta tempo excessivo fazendo cotações manuais em múltiplos canais.</li>
+                            <li><strong>Gargalo de Lançamento de NFe:</strong> O processo de conferência é duplicado. Apenas Curuca "dá entrada", atrasando o estoque (vendas) e o financeiro (Érica).</li>
+                        </ul>
+
+                        <h4 class="text-xl font-semibold mt-8 mb-4">5. Recomendações (Requisitos para Novo Sistema ERP)</h4>
+                        <ul class="list-disc list-inside text-gray-300">
+                            <li><strong>Módulo de Estoque (Estoque Mínimo Obrigatório):</strong> O ERP deve calcular o Estoque Mínimo (baseado na média de vendas) e gerar <strong>sugestões de compra automatizadas</strong>.</li>
+                            <li><strong>Módulo de Compras (Requisição Digital):</strong> O ERP deve ter um módulo de "Requisição de Compra" digital, que substitua o caderno físico.</li>
+                            <li><strong>Módulo de Cotação (Otimização):</strong> O sistema deve permitir anexar cotações (PDFs, e-mails) à requisição de compra, criando um histórico de preços.</li>
+                            <li><strong>Importação de NFe via XML (Eliminação do Gargalo):</strong> O ERP deve obrigatoriamente ter a função de <strong>"Importar XML da NFe"</strong>. O Estoquista (Lucas) deve conferir no coletor, e o sistema valida/libera automaticamente.</li>
+                        </ul>
                     </div>
                 </section>
-                
+
+                <section id="estoque" class="tab-panel">
+                    <div class="card">
+                        <h3 class="text-2xl font-bold mb-4" style="color: var(--accent-color);">Estoque (Lucas)</h3>
+                        
+                        <h4 class="text-xl font-semibold mt-4 mb-2 text-white">1. Sumário Executivo</h4>
+                        <p class="text-gray-300">Lucas é o Estoquista principal, focado na operação física (recebimento, conferência, transferência). Seu processo é **100% manual e dependente**. O gargalo central é que todo o seu trabalho de conferência é registrado em um **relatório de papel (rascunho)**, que é entregue ao Curuca (Compras) para a digitação e entrada real no sistema. Lucas não tem autonomia ou ferramentas (como um coletor de dados) para interagir com o sistema na entrada de notas, atuando apenas como um conferente físico cujos registros formais são descartados.</p>
+
+                        <h4 class="text-xl font-semibold mt-8 mb-4">2. Perfil do Colaborador</h4>
+                        <ul class="list-disc list-inside text-gray-300">
+                            <li><strong>Função:</strong> Estoquista.</li>
+                            <li><strong>Perfil:</strong> Operacional, focado na execução física.</li>
+                            <li><strong>Função Core:</strong> Receber mercadorias, conferir fisicamente os produtos, gerar um relatório de entrada manual (em papel), executar transferências entre lojas (quando solicitado).</li>
+                            <li><strong>Função Secundária:</strong> Codificar (etiquetar) mercadorias avulsas (após Curuca criar o código).</li>
+                        </ul>
+
+                        <h4 class="text-xl font-semibold mt-8 mb-4">3. Mapeamento de Rotinas (AS-IS)</h4>
+                        <div class="overflow-x-auto">
+                            <table class="content-table">
+                                <thead>
+                                    <tr>
+                                        <th>Processo-Chave</th>
+                                        <th>Mapeamento da Rotina e Processo (AS-IS)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Recebimento e Conferência (Manual)</strong></td>
+                                        <td>1. Recebe a NFe, confere fisicamente os produtos. <br> 2. <strong>[Processo Manual]</strong> "Faz o relatório com a quantidade" em um papel. <br> 3. Anota avarias (ex: "unidade") no mesmo "papelzinho". <br> 4. <strong>[Handoff/Gargalo]</strong> Passa o relatório de papel para o Curuca. Curuca é quem "dá entrada em todo o estoque" no sistema.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Processo de Transferência (Manual)</strong></td>
+                                        <td>1. Curuca (após dar entrada na nota) determina a "divisão" e pede a Lucas para transferir. <br> 2. <strong>[Interação com Sistema]</strong> Lucas digita o código do produto, a filial de destino (ex: 01) e a quantidade no PMenu para alterar o estoque.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Gestão de Avarias (Dependência)</strong></td>
+                                        <td>1. Anota a avaria no papel. <br> 2. Passa para o Curuca, que é o responsável por "criar um código diferente" para o item avulso (ex: taça). <br> 3. Somente após isso, Lucas pode etiquetar o item para venda avulsa.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <h4 class="text-xl font-semibold mt-8 mb-4">4. Diagnóstico (GAPs)</h4>
+                        <ul class="gap-list">
+                            <li><strong>Processo de Entrada 100% em Papel (Risco Crítico):</strong> A conferência depende de um relatório em papel que o próprio Lucas admite ser usado como "rascunho", sem rastreabilidade.</li>
+                            <li><strong>Dupla Conferência (Ineficiência):</strong> Lucas confere e anota no papel. Curuca re-confere o papel de Lucas contra a NFe antes de digitar. É um retrabalho que gera gargalo.</li>
+                            <li><strong>Ausência de Ferramentas (Gargalo Tecnológico):</strong> Lucas não utiliza um coletor de dados. A entrada no sistema é totalmente desvinculada da conferência física.</li>
+                            <li><strong>Dependência Total para Gestão de Avarias:</strong> Lucas identifica a avaria, mas depende do Curuca para criar o novo SKU, atrasando a disponibilização do item para venda.</li>
+                        </ul>
+
+                        <h4 class="text-xl font-semibold mt-8 mb-4">5. Recomendações (Requisitos para Novo Sistema ERP)</h4>
+                        <ul class="list-disc list-inside text-gray-300">
+                            <li><strong>Módulo de Recebimento com Coletor de Dados (Prioridade Máxima):</strong> Implementar um Módulo WMS/Recebimento no ERP, que funcione em um <strong>Coletor de Dados (Scanner)</strong>. Isso elimina o "relatório de papel" e o gargalo do Curuca.</li>
+                            <li><strong>Gestão de Avarias no Coletor:</strong> O coletor deve ter uma função para Lucas registrar "Avarias" ou "Quebras" no ato da conferência, gerando um alerta automático para o gestor.</li>
+                            <li><strong>Módulo de Transferência Otimizado:</strong> O sistema, ao receber o XML, já deve sugerir a divisão (baseado no pedido) e criar a "Ordem de Transferência" para Lucas apenas executar.</li>
+                        </ul>
+                    </div>
+                </section>
+
                 <section id="operacoes" class="tab-panel">
                     <div class="card">
-                        <h3 class="text-xl font-semibold mb-4">Rotina 1: Venda e Consulta de Estoque</h3>
-                        <h4 class="text-lg font-semibold mt-4 mb-2 text-gray-400">Passo a Passo (AS-IS)</h4>
-                        <ol class="list-decimal list-inside space-y-2 text-gray-300">
-                            <li>Vendedor aborda o cliente e digita o código do produto no PMenu.</li>
-                            <li>Sistema exibe o estoque da loja atual (ex: 24) e de outras lojas (ex: 35).</li>
-                            <li>Cliente quer 36 unidades. O estoque da loja não é suficiente.</li>
-                            <li>Vendedor precisa <strong>LIGAR</strong> para a outra loja para confirmar se o estoque de "35" é real.</li>
-                            <li>Se for real, solicita a transferência (feita manualmente pelo gerente no PMenu) ou envia o cliente para buscar lá.</li>
-                        </ol>
-                        <h4 class="text-lg font-semibold mt-6 mb-2 text-gray-400">GAPs Identificados</h4>
+                        <h3 class="text-2xl font-bold mb-4" style="color: var(--accent-color);">Vendas T4 (Mapeamento do Vendedor/Elber)</h3>
+                        
+                        <h4 class="text-xl font-semibold mt-4 mb-2 text-white">1. Sumário Executivo</h4>
+                        <p class="text-gray-300">O Vendedor na Casa Goianita opera em um modelo "faz-tudo" (abordagem, consultoria, registro, embalagem, entrega). O diagnóstico do processo revela gargalos críticos: O <strong>"Furo de Estoque"</strong> (sistema não confiável) força o vendedor a <strong>ligar para outra loja</strong> para confirmar estoque, quebrando o fluxo de atendimento. A <strong>Ausência de CRM</strong> (uso do código genérico "888" para vendas) impede a loja de construir um histórico de compras ou identificar clientes recorrentes. Por fim, o <strong>Atrito no Fechamento</strong> (Caixa não sabe de descontos) e a <strong>Multitarefa</strong> (Vendedor tem que embalar) geram ineficiência.</p>
+
+                        <h4 class="text-xl font-semibold mt-8 mb-4">2. Perfil do Processo</h4>
+                        <ul class="list-disc list-inside text-gray-300">
+                            <li><strong>Processo:</strong> Jornada de Venda (Atendimento ao Cliente).</li>
+                            <li><strong>Atores:</strong> Vendedor(a) (ator principal), Gerente (Elber - atua como Vendedor/escalonamento), Caixa.</li>
+                            <li><strong>Sistema:</strong> PMenu (ERP).</li>
+                        </ul>
+
+                        <h4 class="text-xl font-semibold mt-8 mb-4">3. Mapeamento da Rotina de Venda (AS-IS)</h4>
+                        <div class="overflow-x-auto">
+                            <table class="content-table">
+                                <thead>
+                                    <tr>
+                                        <th>Fase do Processo</th>
+                                        <th>Mapeamento da Rotina e Processo (AS-IS)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Fase 1: Abordagem</strong></td>
+                                        <td>Vendedor aborda o cliente, realiza sondagem e o acompanha pela loja.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Fase 2: Verificação de Estoque</strong></td>
+                                        <td>1. Cliente seleciona itens. <br> 2. <strong>[Ponto de Falha]</strong> Se o estoque é insuficiente, Vendedor consulta o PMenu (F4). <br> 3. Vendedor <strong>DEVE LIGAR</strong> para outra loja para confirmar o estoque, pois o sistema <strong>"não é 100% confiável"</strong>. <br> 4. Solicita transferência manual.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Fase 3: Negociação (Terminal)</strong></td>
+                                        <td>1. Vendedor lança produtos no PMenu. <br> 2. <strong>[Autonomia]</strong> Aplica <strong>5% de desconto</strong> (Promoção 8) para pagamentos à vista. <br> 3. Se o produto já está em "Oferta", o sistema bloqueia, exigindo autorização do Gerente. <br> 4. Pode alterar para "Tipo 10" (Atacado) para clientes B2B.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Fase 4: Finalização (Pré-Venda)</strong></td>
+                                        <td>1. Vendedor seleciona condição de pagamento. <br> 2. <strong>[Ponto de Falha - CRM]</strong> Se o cliente não tem cadastro, utiliza o código genérico <strong>"888"</strong> e insere apenas o nome. <br> 3. Cadastro completo só é feito se o cliente solicitar NF-e. <br> 4. "Fecha a Venda" gerando a pré-venda.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Fase 5: Handoff e Embalagem</strong></td>
+                                        <td>1. Vendedor orienta o cliente ao Caixa. <br> 2. <strong>[Multitarefa]</strong> Enquanto o cliente paga, o Vendedor leva os produtos ao balcão e <strong>ele mesmo embala</strong>. <br> 3. Cliente retorna e retira os produtos.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Fase 6: Entrega (Borderô)</strong></td>
+                                        <td>1. Se aplicável, Vendedor acessa o "Borderô" (Ctrl+1). <br> 2. Preenche o formulário digital com os dados da entrega (Nº Cupom, itens, endereço).</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <h4 class="text-xl font-semibold mt-8 mb-4">4. Diagnóstico (GAPs)</h4>
                         <ul class="gap-list">
-                            <li>O estoque do PMenu não é 100% confiável, gerando "furos" e perda de vendas.</li>
-                            <li>A transferência entre lojas é um processo manual (via telefone) que depende de um gerente.</li>
-                            <li>Falta de WMS (Gestão de Depósito): O estoque existe, mas "não sabe onde está a mercadoria", aumentando o tempo de atendimento.</li>
+                            <li><strong>Risco de Estoque ("Furo"):</strong> O sistema não é 100% preciso, exigindo que o Vendedor <strong>ligue para outras lojas</strong>, quebrando o fluxo de atendimento.</li>
+                            <li><strong>Ausência de CRM (Perda de Dados):</strong> O processo padrão (código "888") impede a loja de construir um histórico de compras ou identificar clientes recorrentes.</li>
+                            <li><strong>Vendedor "Multitarefa":</strong> O Vendedor acumula a função de empacotador, o que gera gargalos em momentos de alto fluxo.</li>
+                            <li><strong>Atrito Caixa vs. Venda:</strong> O Caixa não sabe se a mudança da forma de pagamento (ex: de 1x para 2x) invalida um desconto negociado pelo Vendedor.</li>
+                        </ul>
+
+                        <h4 class="text-xl font-semibold mt-8 mb-4">5. Recomendações (Requisitos para Novo Sistema ERP)</h4>
+                        <ul class="list-disc list-inside text-gray-300">
+                            <li><strong>Módulo de Estoque (Integrado e Real-Time):</strong> O novo ERP deve ter um controle de <strong>inventário multi-loja 100% confiável</strong> para eliminar a necessidade de ligar para outras lojas.</li>
+                            <li><strong>Módulo de Vendas (CRM Obrigatório):</strong> O sistema deve <strong>obrigar o cadastro mínimo</strong> (Nome e Telefone/CPF) para gerar a pré-venda, eliminando o código "888".</li>
+                            <li><strong>Fluxo de Pagamento Unificado:</strong> O sistema deve calcular automaticamente se a condição de pagamento (ex: 2x no cartão) permite o desconto aplicado, eliminando o atrito Caixa-Vendedor.</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section id="vendedora-t4" class="tab-panel">
+                    <div class="card">
+                        <h3 class="text-2xl font-bold mb-4" style="color: var(--accent-color);">Vendedora T4 (Maria)</h3>
+                        
+                        <h4 class="text-xl font-semibold mt-4 mb-2 text-white">1. Sumário Executivo</h4>
+                        <p class="text-gray-300">Maria é a vendedora mais sênior da T4 (+15 anos), com um perfil **altamente relacional** e uma base de clientes leais. O diagnóstico revela três gargalos: 1) **Operacional (Multitarefa):** Seu ponto de dor mais crítico é a sobrecarga de funções; ela tem que "vender, pegar no depósito, embalar e levar o cliente no carro", o que a faz perder vendas no piso. 2) **Motivação (Cultura):** Ela relata forte percepção de "discriminação" e "falta de harmonia" na distribuição de vendas e ausência de reconhecimento ("a pessoa não reconhece o valor que você tem"). 3) **Qualificação:** Aponta ausência total de treinamento de vendas ou produtos ("faz muito tempo").</p>
+
+                        <h4 class="text-xl font-semibold mt-8 mb-4">2. Perfil da Colaboradora</h4>
+                        <ul class="list-disc list-inside text-gray-300">
+                            <li><strong>Função:</strong> Vendedora Sênior.</li>
+                            <li><strong>Experiência:</strong> Mais de 15 anos.</li>
+                            <li><strong>Perfil:</strong> Foco total no <strong>relacionamento</strong> ("a gente vira amigos", "vira psicólogo"). Vê o atendimento consultivo como o diferencial.</li>
+                            <li><strong>Função Core:</strong> Atendimento e Venda Consultiva, construção de carteira de clientes.</li>
+                            <li><strong>Funções Secundárias:</strong> Manutenção da "Banca" (organização, limpeza, atualização de preços), embalagem e transporte de produtos ao carro.</li>
+                        </ul>
+
+                        <h4 class="text-xl font-semibold mt-8 mb-4">3. Mapeamento de Rotinas (AS-IS)</h4>
+                        <div class="overflow-x-auto">
+                            <table class="content-table">
+                                <thead>
+                                    <tr>
+                                        <th>Processo-Chave</th>
+                                        <th>Mapeamento da Rotina e Processo (AS-IS)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Venda Consultiva</strong></td>
+                                        <td>1. Atende clientes da loja e sua carteira pessoal (que ligam procurando por ela). <br> 2. Foca em entender a necessidade do cliente (ex: "Até que valor?"). <br> 3. Utiliza técnicas de *upselling* e sugestão (ex: "vim comprar um trem o tanto de sacola que tô levando").</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Rotina de Loja (Multitarefa)</strong></td>
+                                        <td>1. <strong>[Gargalo]</strong> O fluxo é descrito como: <strong>Vender</strong> -> <strong>Pegar no depósito</strong> -> <strong>Embalar</strong> -> <strong>Levar o cliente no carro</strong>. <br> 2. Ela identifica que, enquanto embala, está "perdendo cliente aqui" (no piso da loja).</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Manutenção da "Banca"</strong></td>
+                                        <td>1. Responsável por sua prateleira (organização, limpeza). <br> 2. O gerente (Fabrício) tira a atualização de preço, Maria imprime a nova etiqueta e cola no produto.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <h4 class="text-xl font-semibold mt-8 mb-4">4. Diagnóstico (GAPs)</h4>
+                        <ul class="gap-list">
+                            <li><strong>Gargalo Operacional (Vendedor Multitarefa):</strong> A vendedora gasta tempo em tarefas de baixo valor (embalar, levar ao carro), gerando perda de vendas por falta de atendimento no piso.</li>
+                            <li><strong>Falta de Treinamento (Crítico):</strong> Confirma a falta de treinamento ("faz muito tempo") e compara com outra empresa (Cuba Zicia) onde tinha "treinamento todo dia".</li>
+                            <li><strong>Percepção de Injustiça e Falta de Reconhecimento (Risco de Retenção):</strong> Relata "discriminação" e "falta de harmonia". Sente-se desvalorizada e aponta que o mural de metas (onde ela se destacava) não é mais usado.</li>
+                            <li><strong>Conflito de Função (Vendedor vs. Caixa):</strong> Aponta que a funcionária do Caixa (Isa), com salário fixo, às vezes atende e "tira a venda das vendedoras" (comissionadas).</li>
+                        </ul>
+
+                        <h4 class="text-xl font-semibold mt-8 mb-4">5. Recomendações (Plano de Ação)</h4>
+                        <ul class="list-disc list-inside text-gray-300">
+                            <li><strong>Otimização do Fluxo de Venda (Definição de Papéis):</strong> Alocar um recurso (novo ou o Caixa em horários de pico) para ser o ponto focal de <strong>embalagem e trocas</strong> ("balcão"), liberando a Vendedora.</li>
+                            <li><strong>Programa Urgente de Treinamento e Reconhecimento:</strong> Implementar treinamentos (Técnico/Produtos e Comportamental/Vendas) e reativar o reconhecimento de desempenho (ex: "Vendedor do Mês").</li>
+                            <li><strong>Revisão da Política de Comissionamento (Gerentes):</strong> Definir e comunicar uma regra <strong>clara e justa</strong> sobre a distribuição de comissões de "vendas da casa" para eliminar a percepção de "discriminação".</li>
+                            <li><strong>Otimização da Função do Caixa:</strong> Definir o escopo da função do Caixa (Isa). Se ela deve vender, deve ser comissionada. Se não, seu foco deve ser 100% no caixa e suporte à embalagem.</li>
                         </ul>
                     </div>
                 </section>
 
                 <section id="gerencia-t4" class="tab-panel">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div class="card">
-                            <h3 class="text-xl font-semibold mb-4">Rotina 1: O Gerente "Faz-Tudo" (Acúmulo de Funções)</h3>
-                            <h4 class="text-lg font-semibold mt-4 mb-2 text-gray-400">Escopo da Função (AS-IS)</h4>
-                            <p class="text-gray-400 mb-4">O cargo de Gerente na T4 é, na prática, o de um "generalista" que cobre lacunas operacionais devido ao quadro reduzido.</p>
-                            <ol class="list-decimal list-inside space-y-2 text-gray-300">
-                                <li><strong>Gestor:</strong> Abre/fecha loja, supervisiona equipe, participa de entrevistas.</li>
-                                <li><strong>Vendedor:</strong> Atende clientes e realiza vendas (assumindo o "faz-tudo" do vendedor).</li>
-                                <li><strong>Caixa:</strong> Cobre o operador de caixa em contingências.</li>
-                                <li><strong>Estoquista (Suporte):</strong> Colabora na abertura de notas fiscais (processo manual).</li>
-                                <li><strong>Manutenção:</strong> Limpa banheiros e vitrines na ausência da profissional dedicada.</li>
-                            </ol>
+                    <div class="card">
+                        <h3 class="text-2xl font-bold mb-4" style="color: var(--accent-color);">Gerência T4 (Fabrício)</h3>
+                        
+                        <h4 class="text-xl font-semibold mt-4 mb-2 text-white">1. Sumário Executivo</h4>
+                        <p class="text-gray-300">Fabrício (Gerente T4, 11 anos de casa) tem sua função **minada pela ausência de autoridade gerencial**. O principal ponto de dor é que os proprietários ("pai da Silvana") permitem que funcionários sênior (Maria) **ignorem a hierarquia**, buscando aprovações (como férias) diretamente com eles, que revertem as decisões do gerente. Isso destrói a moral da equipe ("Por que que eu não posso... e ela pode?") e deixa Fabrício sem autonomia. Ele identifica corretamente os gargalos estratégicos (preços, marketing, queda de faturamento de 400k para 200k), mas relata que a diretoria não dá "nem um retorno" às suas sugestões, levando-o a desistir de "bater de frente" devido à "postura... fraca" dos donos.</p>
+
+                        <h4 class="text-xl font-semibold mt-8 mb-4">2. Perfil do Colaborador</h4>
+                        <ul class="list-disc list-inside text-gray-300">
+                            <li><strong>Função:</strong> Gerente (Loja T4).</li>
+                            <li><strong>Experiência:</strong> 11 anos.</li>
+                            <li><strong>Perfil:</strong> Gerente tático e analista de negócios frustrado; impedido de gerir pela estrutura familiar.</li>
+                            <li><strong>Função Core:</strong> Gestão de Pessoal (tentativa frustrada), Distribuição de Vendas (fonte de conflito), Atendimento ao Cliente.</li>
+                            <li><strong>Funções Secundárias (Análise):</strong> Identifica queda drástica de faturamento e necessidades estratégicas (preços, marketing).</li>
+                        </ul>
+
+                        <h4 class="text-xl font-semibold mt-8 mb-4">3. Mapeamento de Rotinas (AS-IS)</h4>
+                        <div class="overflow-x-auto">
+                            <table class="content-table">
+                                <thead>
+                                    <tr>
+                                        <th>Processo-Chave</th>
+                                        <th>Mapeamento da Rotina e Processo (AS-IS)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Gestão de Pessoal (Conflito)</strong></td>
+                                        <td>1. Fabrício nega um pedido de férias de Maria, explicando a falta de pessoal. <br> 2. <strong>[Quebra de Hierarquia]</strong> Maria "foi lá na casa deles, chorou" para o "pai da Silvana". <br> 3. A diretoria reverte a decisão e concede as férias. <br> 4. Fabrício perde a autoridade ("quem que teve que se virar...?") e a equipe fica desmotivada.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Distribuição de Vendas (Polêmica)</strong></td>
+                                        <td>1. Fabrício e Elber distribuem comissões de vendas "da casa". <br> 2. Admite preferir passar vendas para Joice, pois ela "resolve", enquanto Maria "tem essa dificuldade". <br> 3. <strong>[Falta de Padrão]</strong> Ausência de regra formal gera percepção de "privilégio".</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Análise Estratégica (Ignorada)</strong></td>
+                                        <td>1. Identifica que o "cenário mudou" e os preços estão defasados. <br> 2. <strong>[Gargalo de Feedback]</strong> Ele "fala", mas "não vê... nem um retorno mesmo deles". <br> 3. Desiste de sugerir: "Não adianta bater de frente".</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
-                        <div class="card">
-                            <h3 class="text-xl font-semibold mb-4">Rotina 2: Pontos de Dor e Gargalos Críticos</h3>
-                            <h4 class="text-lg font-semibold mt-6 mb-2 text-gray-400">GAPs Identificados</h4>
-                            <ul class="gap-list">
-                                <li><strong>Transição Abrupta:</strong> Promovido a gerente "muito rápido" e <strong>"sem nenhum treinamento"</strong>, aprendendo na prática.</li>
-                                <li><strong>Carga Psicológica (Equipe):</strong> Causa de maior "trabalho". Ambiente com <strong>"muita disputa, muita coisinha"</strong>, sobrecarregando a gestão.</li>
-                                <li><strong>Delay de Estoque (Recebimento):</strong> O produto chega, é conferido, mas SÓ fica disponível para venda após a "entrada" manual do Gerente no sistema.</li>
-                                <li><strong>Furo de Estoque (Consulta):</strong> O estoque do PMenu não é confiável, forçando o Gerente a <strong>LIGAR</strong> para outras lojas para confirmar a disponibilidade de um produto.</li>
-                            </ul>
-                        </div>
+
+                        <h4 class="text-xl font-semibold mt-8 mb-4">4. Diagnóstico (GAPs)</h4>
+                        <ul class="gap-list">
+                            <li><strong>Autoridade Gerencial Nula (Crítico):</strong> A estrutura familiar permite que funcionários (Maria) ignorem a hierarquia gerencial. O Gerente não tem autonomia.</li>
+                            <li><strong>Ausência Total de Política de RH (Causa-Raiz):</strong> Não há procedimentos formais. "Tempo de casa" é confundido com autoridade. Não há regras claras de férias ou comissões.</li>
+                            <li><strong>Postura de Propriedade Fraca (Cultural):</strong> A diretoria evita o conflito (ex: "procurar uma solução de transferir") em vez de resolvê-lo, gerando um "climão" e desmotivando a equipe.</li>
+                            <li><strong>Canal de Feedback Estratégico Quebrado:</strong> O gerente, que está na linha de frente, não se sente ouvido e desiste de contribuir com análises (preços, faturamento).</li>
+                        </ul>
+
+                        <h4 class="text-xl font-semibold mt-8 mb-4">5. Recomendações (Plano de Ação)</h4>
+                        <ul class="list-disc list-inside text-gray-300">
+                            <li><strong>Definição Urgente de Hierarquia e Organograma:</strong> Comunicar formalmente que os Gerentes de Loja são a autoridade final na operação da loja, incluindo gestão de pessoas (férias, escalas).</li>
+                            <li><strong>Criação de Políticas de RH Básicas:</strong> Documentar políticas claras para: 1) Solicitação de Férias (com aprovação gerencial), 2) Código de Conduta, e 3) Distribuição de Comissões de "vendas da casa".</li>
+                            <li><strong>Fortalecimento da Autoridade Gerencial (Ação da Diretoria):</strong> Os proprietários (família) devem parar de intervir em decisões operacionais e redirecionar as queixas dos funcionários de volta ao gerente.</li>
+                            <li><strong>Criação de Canal de Feedback Estratégico:</strong> Agendar reuniões mensais (Consultoria/Diretoria/Gerentes) com pauta focada em ouvir e *agir* sobre as análises estratégicas (preços, marketing, faturamento).</li>
+                        </ul>
                     </div>
                 </section>
 
             </div>
         </section>
     </main>
-
-    <footer class="py-16">
-        <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
-            <img class="h-24 mx-auto" 
-                 src="https://raw.githubusercontent.com/Clebito2/layout/main/Logo%20live%20oficial-34.png" 
-                 alt="Logo Live Consultoria"
-                 loading="lazy">
-            <p class="mt-4 text-lg font-semibold text-white">Live Consultoria Empresarial</p>
-            <p class="mt-2 text-sm text-gray-400">luizportal@ecossistemalive.com.br</p>
-        </div>
-    </footer>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -512,12 +761,6 @@
                     document.getElementById(tabId).classList.add('active');
                 });
             });
-
-            // --- Lógica de Animação (Fade-in) ---
-            // O Guia de Estilo pede IntersectionObserver, mas para simplificar 
-            // e garantir funcionamento no iframe, usaremos um fade-in direto.
-            // Para uma versão de produção, o IO seria ideal.
-            // (Os elementos .fade-in já têm a animação aplicada via CSS)
         });
     </script>
 
