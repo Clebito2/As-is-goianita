@@ -198,6 +198,8 @@
                     <button class="tab-button" data-tab="vendedora-t4" role="tab">Vendedora T4 (Maria)</button>
                     <button class="tab-button" data-tab="gerencia-t4" role="tab">Gerência T4 (Fabrício)</button>
                     <button class="tab-button" data-tab="karinne" role="tab">Central (Karinne)</button>
+                    <button class="tab-button" data-tab="leila" role="tab">DP (Leila)</button>
+                    <button class="tab-button" data-tab="iza" role="tab">Balcão/Noivas (Iza)</button>
                 </nav>
             </div>
 
@@ -782,6 +784,145 @@
                             <li><strong>Integração Real-Time Estoque/Site (Novo ERP):</strong> O novo sistema deve garantir que o estoque do site seja o mesmo da loja física, eliminando a venda de produtos esgotados e a necessidade de conferência manual.</li>
                             <li><strong>Digitalização de Comprovantes de Entrega:</strong> Implementar aplicativo de entrega onde o cliente assina na tela, eliminando o arquivo físico de borderôs.</li>
                             <li><strong>Automação do Processo de Troca/Crédito:</strong> O sistema deve gerar o crédito (voucher) automaticamente ao registrar a devolução, sem a necessidade de "gambiarra" fiscal (venda negativa) ou emissão de cartão de papel.</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section id="leila" class="tab-panel">
+                    <div class="card">
+                        <h3 class="text-2xl font-bold mb-4" style="color: var(--accent-color);">DP e Suporte Financeiro (Leila)</h3>
+                        
+                        <h4 class="text-xl font-semibold mt-4 mb-2 text-white">1. Sumário Executivo</h4>
+                        <p class="text-gray-300">Leila (30 anos de casa) é o pilar do Departamento Pessoal e atua como um "escudo" para os funcionários e um "motor de dados" para a diretoria. Embora sua função primária seja DP, ela gasta uma quantidade massiva de tempo realizando funções de suporte financeiro manual para os sócios (Seu Carlos e Cláudia), principalmente na <strong>conciliação de cartões</strong> (processo mais trabalhoso da empresa) e no preenchimento de planilhas de controle pessoal. Ela opera como um ponto de controle central, mitigando riscos trabalhistas e crises internas.</p>
+
+                        <h4 class="text-xl font-semibold mt-8 mb-4">2. Perfil da Colaboradora</h4>
+                        <ul class="list-disc list-inside text-gray-300">
+                            <li><strong>Função:</strong> Chefe de Departamento Pessoal e Assistente Financeiro Sênior.</li>
+                            <li><strong>Experiência:</strong> Quase 30 anos (memória viva da empresa).</li>
+                            <li><strong>Função Core (DP):</strong> Contratação, Folha de Pagamento, Gestão de POPs, Controle de Ponto, Gestão de Crises (Assédio/Processos).</li>
+                            <li><strong>Função Secundária (Financeiro):</strong> Conciliação de Cartões (Crítica), Fechamento de Caixa, Pagamento de contas pessoais dos sócios.</li>
+                        </ul>
+
+                        <h4 class="text-xl font-semibold mt-8 mb-4">3. Mapeamento de Rotinas (AS-IS)</h4>
+                        <div class="overflow-x-auto">
+                            <table class="content-table">
+                                <thead>
+                                    <tr>
+                                        <th>Processo-Chave</th>
+                                        <th>Mapeamento da Rotina e Processo (AS-IS)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Departamento Pessoal (Manual)</strong></td>
+                                        <td>1. Contratação: Escaneia docs e envia para contabilidade. Elabora contratos internos e POPs. <br> 2. Folha: Fecha comissões manualmente, envia para contabilidade, recebe de volta e re-confere item por item. <br> 3. Ponto: Controla via App, mas compensação de horas é manual ("banco de horas informal").</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Conciliação de Cartões (Gargalo Crítico)</strong></td>
+                                        <td>1. A atividade "mais chata e demorada". <br> 2. Com Érica, acessa sistema Cielo e Extratos Bancários. <br> 3. Confere loja por loja, dia a dia. <br> 4. Gera relatórios manuais de "O que entrou", "O que foi antecipado" e "Taxas" para Seu Carlos e Cláudia.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Suporte Financeiro aos Sócios</strong></td>
+                                        <td>1. Recebe extratos e contas pessoais dos sócios (que não movimentam contas bancárias). <br> 2. Realiza pagamentos e lança tudo em planilhas detalhadas para controle do Seu Carlos. <br> 3. Transcreve manualmente dados de extratos bancários para planilhas Excel.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Gestão de Crises e Clima</strong></td>
+                                        <td>1. Atua como "escudo" histórico, conversando com funcionários insatisfeitos para evitar processos trabalhistas. <br> 2. Identifica baixa motivação da equipe de vendas devido a salários baixos e falta de estoque.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <h4 class="text-xl font-semibold mt-8 mb-4">4. Diagnóstico (GAPs)</h4>
+                        <ul class="gap-list">
+                            <li><strong>Trabalho Manual Massivo (Ineficiência):</strong> A conciliação de cartões e a transcrição de extratos bancários para planilhas consomem tempo valioso de um recurso sênior.</li>
+                            <li><strong>Mistura de PJ e PF (Risco e Sobrecarga):</strong> Leila gerencia a vida financeira pessoal dos sócios dentro do horário da empresa, o que desvia foco da gestão estratégica de pessoas.</li>
+                            <li><strong>Baixa Retenção e Motivação (Alerta RH):</strong> Identifica que a loja perde talentos por salários baixos e falta de incentivos. Vendedores preferem ganhar menos a trabalhar aos sábados/domingos.</li>
+                            <li><strong>Centralização de Decisões:</strong> Aponta a "mente fechada" da administração familiar como causa da queda do negócio, com decisões tomadas sem consultar a linha de frente.</li>
+                        </ul>
+
+                        <h4 class="text-xl font-semibold mt-8 mb-4">5. Recomendações (Plano de Ação)</h4>
+                        <ul class="list-disc list-inside text-gray-300">
+                            <li><strong>Conciliação de Cartões Automatizada (Novo ERP):</strong> O ERP deve importar o arquivo OFX/CNAB da adquirente (Cielo) e conciliar automaticamente as taxas e recebimentos, eliminando o processo manual de Leila e Érica.</li>
+                            <li><strong>Separação Financeira Total:</strong> Implementar "Pró-Labore" fixo para os sócios, transferindo a responsabilidade do pagamento de contas pessoais para eles mesmos, liberando o DP/Financeiro.</li>
+                            <li><strong>Reestruturação do RH (Políticas Claras):</strong> Criar um plano de cargos e salários e rever a política de comissões para estancar a perda de talentos.</li>
+                            <li><strong>Empoderamento do DP:</strong> Transformar a função de Leila de "executora de planilhas" para "Gestora de RH", focando em treinamento, clima e retenção.</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section id="iza" class="tab-panel">
+                    <div class="card">
+                        <h3 class="text-2xl font-bold mb-4" style="color: var(--accent-color);">Balcão e Gestão de Noivas T4 (Iza)</h3>
+                        
+                        <h4 class="text-xl font-semibold mt-4 mb-2 text-white">1. Sumário Executivo</h4>
+                        <p class="text-gray-300">Iza trabalha na Goianita há aproximadamente 2,5 anos. Embora formalmente contratada para o "Balcão", sua função evoluiu para um papel híbrido e essencial <strong>exclusivamente na Loja T4</strong>: ela gerencia as <strong>Trocas</strong> locais, dá suporte completo às <strong>Noivas (Listas de Casamento) da unidade</strong> e atua como backup no Caixa e Vendas.</p>
+                        <p class="mt-2 text-gray-300">Sua experiência anterior em administração a torna apta a lidar com processos manuais, mas a entrevista revela uma funcionária que <strong>rejeita ativamente a função de vendas</strong>, prefere a estabilidade do salário fixo e valoriza a "tranquilidade" da falta de cobrança, demonstrando baixa ambição de crescimento profissional na estrutura comercial.</p>
+
+                        <h4 class="text-xl font-semibold mt-8 mb-4">2. Perfil Comportamental (Análise da Entrevista)</h4>
+                        <div class="bg-gray-800 p-4 rounded-lg border border-gray-700">
+                            <p class="text-gray-300 mb-2"><strong>Aversão a Vendas e Risco:</strong> Iza deixa claro que não se identifica com a área comercial e rejeita modelos de remuneração variável.</p>
+                            <ul class="list-disc list-inside text-gray-400 italic mb-4">
+                                <li>"Eu não gosto de vender... eu prefiro essa coisa do fixo, sabe? Esse coisas de um mês você ganha um tanto para mim não... não é muito certeza."</li>
+                                <li>"Eu sou eu gosto de coisas certinha... E esse trem de um dia você ganha um tanto... para mim não dá certo não."</li>
+                                <li>"Nunca, na verdade, eu nunca entrei nessa fila [de vendas]... nunca participei."</li>
+                            </ul>
+                            
+                            <p class="text-gray-300 mb-2"><strong>Baixa Iniciativa e Ambição (Zona de Conforto):</strong> Demonstra satisfação com a falta de cobrança e falta de clareza sobre futuro profissional.</p>
+                            <ul class="list-disc list-inside text-gray-400 italic">
+                                <li>Sobre o ambiente: "Eu acho assim um ambiente bem tranquilo... não é muito assim de... ficarem em cima te cobrando, sabe? Eu gosto dessa parte."</li>
+                                <li>Sobre motivação: "Motivação? Eu nunca pensei nisso. Não sei."</li>
+                                <li>Sobre carreira (Direito): "Ainda tá meio incerto... uma hora eu tô gostando... outra hora eu não tô gostando."</li>
+                            </ul>
+                        </div>
+
+                        <h4 class="text-xl font-semibold mt-8 mb-4">3. Mapeamento de Rotinas e Divergências (AS-IS)</h4>
+                        <div class="overflow-x-auto">
+                            <table class="content-table">
+                                <thead>
+                                    <tr>
+                                        <th>Processo-Chave</th>
+                                        <th>Procedimento T4 (Iza) vs. Padrão (Karinne)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Lista de Casamento (Personalizada)</strong></td>
+                                        <td>
+                                            <strong>Iza (T4):</strong> Processo <strong>100% Físico/Manual</strong>. A lista "fica retida aqui na nossa loja" e não vai para o site. Baixa é manual em papel/planilha.<br>
+                                            <strong>Divergência:</strong> Karinne (Central) tenta centralizar e manter o site atualizado. A lista "offline" da T4 gera furos de estoque e perde vendas online.
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Trocas e Créditos</strong></td>
+                                        <td>
+                                            <strong>Iza (T4):</strong> Realiza a troca e gera vale crédito na loja. Afirma que "troca tá bem baixa".<br>
+                                            <strong>Divergência:</strong> Karinne é a "Central de Trocas". A autonomia descentralizada na T4 sem integração total pode gerar duplicidade ou falha no controle de créditos.
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Fluxo de Caixa (Baixa Manual)</strong></td>
+                                        <td>
+                                            <strong>Processo Arcaico:</strong> "Entro em cada venda... coloco o número do doc... valor, tipo de pagamento".<br>
+                                            Baixa item a item no Pmenu, um processo repetitivo que consome horas e impede o fechamento no mesmo dia.
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <h4 class="text-xl font-semibold mt-8 mb-4">4. Diagnóstico (GAPs)</h4>
+                        <ul class="gap-list">
+                            <li><strong>Desalinhamento de Processo (Listas):</strong> A existência de "Listas Personalizadas Offline" na T4 (descritas por Iza) cria um silo de informações que a Central (Karinne) não enxerga, gerando risco de vender o mesmo presente duas vezes (uma na loja física T4, outra no site).</li>
+                            <li><strong>Perfil Não-Comercial em Área de Vendas:</strong> Iza ocupa uma função de "Balcão/Suporte" mas rejeita ativamente vender. Em uma loja com queda de faturamento, ter um funcionário fixo que não gera receita direta e prefere "não ser cobrado" é um custo operacional alto.</li>
+                            <li><strong>Processo de Baixa Manual (Ineficiência):</strong> A descrição detalhada de ter que abrir cada venda para inserir o número do DOC comprova a ineficiência do sistema atual (Pmenu) e a falta de integração TEF.</li>
+                        </ul>
+
+                        <h4 class="text-xl font-semibold mt-8 mb-4">5. Recomendações (Plano de Ação)</h4>
+                        <ul class="list-disc list-inside text-gray-300">
+                            <li><strong>Padronização Imediata das Listas:</strong> Eliminar a "Lista de Papel" da T4. Todas as listas, mesmo as personalizadas, devem ser digitalizadas e integradas ao sistema central (Karinne) para evitar furos.</li>
+                            <li><strong>Avaliação de Função:</strong> Dado que Iza "gosta de coisas certinhas" e tem perfil administrativo, avaliar se ela seria mais eficiente centralizada no Administrativo/Financeiro (ajudando Leila/Érica) do que ocupando espaço no front de loja (T4), onde a proatividade de vendas é necessária.</li>
+                            <li><strong>Automação de Caixa:</strong> Implementar conciliação automática para eliminar a "baixa manual item a item" descrita por ela.</li>
                         </ul>
                     </div>
                 </section>
