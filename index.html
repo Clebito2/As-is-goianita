@@ -197,6 +197,7 @@
                     <button class="tab-button" data-tab="operacoes" role="tab">Vendas T4 (Elber)</button>
                     <button class="tab-button" data-tab="vendedora-t4" role="tab">Vendedora T4 (Maria)</button>
                     <button class="tab-button" data-tab="gerencia-t4" role="tab">Gerência T4 (Fabrício)</button>
+                    <button class="tab-button" data-tab="karinne" role="tab">Central (Karinne)</button>
                 </nav>
             </div>
 
@@ -721,6 +722,66 @@
                             <li><strong>Criação de Políticas de RH Básicas:</strong> Documentar políticas claras para: 1) Solicitação de Férias (com aprovação gerencial), 2) Código de Conduta, e 3) Distribuição de Comissões de "vendas da casa".</li>
                             <li><strong>Fortalecimento da Autoridade Gerencial (Ação da Diretoria):</strong> Os proprietários (família) devem parar de intervir em decisões operacionais e redirecionar as queixas dos funcionários de volta ao gerente.</li>
                             <li><strong>Criação de Canal de Feedback Estratégico:</strong> Agendar reuniões mensais (Consultoria/Diretoria/Gerentes) com pauta focada em ouvir e *agir* sobre as análises estratégicas (preços, marketing, faturamento).</li>
+                        </ul>
+                    </div>
+                </section>
+                
+                <section id="karinne" class="tab-panel">
+                    <div class="card">
+                        <h3 class="text-2xl font-bold mb-4" style="color: var(--accent-color);">Central de Trocas e Entregas (Karinne)</h3>
+                        
+                        <h4 class="text-xl font-semibold mt-4 mb-2 text-white">1. Sumário Executivo</h4>
+                        <p class="text-gray-300">A função de Karinne na Casa Goianita é extremamente abrangente e complexa, atuando como supervisora da <strong>Central de Trocas e Entregas</strong>, além de gerenciar integralmente o processo de <strong>Lista de Presentes</strong> e o Site. Ela atua como ponto de convergência para todas as lojas (85, Marista, Bueno). O diagnóstico revela que ela opera sob <strong>exaustão</strong> devido ao acúmulo de funções e sofre com processos manuais arcaicos e sistemas não confiáveis, que exigem conferências minuciosas e impressões físicas para garantir a segurança da operação.</p>
+
+                        <h4 class="text-xl font-semibold mt-8 mb-4">2. Perfil da Colaboradora</h4>
+                        <ul class="list-disc list-inside text-gray-300">
+                            <li><strong>Função:</strong> Supervisora da Central de Trocas, Entregas e Lista de Presentes.</li>
+                            <li><strong>Abrangência:</strong> Multi-loja (85, Marista, Bueno) e Site.</li>
+                            <li><strong>Função Core:</strong> Gestão de Rota/Logística, Emissão de Crédito (Trocas), Manutenção de Listas de Presentes (Site), Atendimento a Noivas.</li>
+                            <li><strong>Desafio Principal:</strong> Exaustão ("muita responsabilidade", "bem corrido") e falta de reconhecimento institucional.</li>
+                        </ul>
+
+                        <h4 class="text-xl font-semibold mt-8 mb-4">3. Mapeamento de Rotinas (AS-IS)</h4>
+                        <div class="overflow-x-auto">
+                            <table class="content-table">
+                                <thead>
+                                    <tr>
+                                        <th>Processo-Chave</th>
+                                        <th>Mapeamento da Rotina e Processo (AS-IS)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Gestão de Entregas (Logística)</strong></td>
+                                        <td>1. Verifica solicitações via WhatsApp e organiza a rota para otimizar tempo/combustível. <br> 2. Prepara os borderôs físicos. <br> 3. Após a entrega, finaliza no sistema e <strong>arquiva o documento físico com assinatura</strong> (prova de entrega, pois o sistema não captura).</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Central de Trocas e Crédito</strong></td>
+                                        <td>1. Recebe a cliente e confere minuciosamente a mercadoria devolvida. <br> 2. Emite o <strong>Cartão de Crédito físico</strong> (validade de 1 ano). <br> 3. <strong>[Processo Crítico]</strong> Lança "venda negativa" no Pmenu para que o CFOP de devolução abata a venda e retorne o item ao estoque.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Lista de Presentes (Site)</strong></td>
+                                        <td>1. Cadastra a lista da noiva no site e sistema Agente C1. <br> 2. <strong>[Gargalo Manual]</strong> Antes de imprimir a lista para a loja, <strong>edita manualmente preço e estoque de cada item</strong> (100 a 180 itens) no Pmenu para evitar venda de produto esgotado. <br> 3. Busca e atualiza SKUs manualmente na Vetex.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <h4 class="text-xl font-semibold mt-8 mb-4">4. Diagnóstico (GAPs)</h4>
+                        <ul class="gap-list">
+                            <li><strong>Sobrecarga e Acúmulo de Funções:</strong> Karinne absorveu as funções de uma antiga colaboradora, acumulando Entregas, Trocas e Listas, o que gera estresse e exaustão.</li>
+                            <li><strong>Processos Manuais por Desconfiança no Sistema:</strong> A necessidade de arquivar borderôs e relatórios físicos de troca existe porque "vendas somem" do Pmenu e não há assinatura digital.</li>
+                            <li><strong>Falha de Logística nas Filiais:</strong> Outras lojas (especialmente T4) enviam borderôs trocados ou sem conferência, forçando Karinne a intervir na van para corrigir erros.</li>
+                            <li><strong>Dessincronização Estoque vs. Site:</strong> O estoque do site não reflete o físico. Isso gera o problema de "Múltiplos Créditos": noivas recebem vários cartões de troca porque os convidados compraram itens que já não existiam.</li>
+                            <li><strong>Edição Manual de Listas (Risco de Erro):</strong> Conferir e editar manualmente listas de 180 itens é um processo insustentável e sujeito a falhas humanas.</li>
+                        </ul>
+
+                        <h4 class="text-xl font-semibold mt-8 mb-4">5. Recomendações (Plano de Ação)</h4>
+                        <ul class="list-disc list-inside text-gray-300">
+                            <li><strong>Contratação de Assistente de Logística/Atendimento:</strong> É urgente contratar uma pessoa para focar na operação física (entrega, retirada, troca), liberando Karinne para a gestão estratégica das Listas e Site.</li>
+                            <li><strong>Integração Real-Time Estoque/Site (Novo ERP):</strong> O novo sistema deve garantir que o estoque do site seja o mesmo da loja física, eliminando a venda de produtos esgotados e a necessidade de conferência manual.</li>
+                            <li><strong>Digitalização de Comprovantes de Entrega:</strong> Implementar aplicativo de entrega onde o cliente assina na tela, eliminando o arquivo físico de borderôs.</li>
+                            <li><strong>Automação do Processo de Troca/Crédito:</strong> O sistema deve gerar o crédito (voucher) automaticamente ao registrar a devolução, sem a necessidade de "gambiarra" fiscal (venda negativa) ou emissão de cartão de papel.</li>
                         </ul>
                     </div>
                 </section>
